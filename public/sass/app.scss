@@ -1,0 +1,347 @@
+/* Variables */
+$body-color: #e6e6e6;
+$color-black: black;
+$color-light-grey: lightgrey;
+$color-white: white;
+$color-blue-primary: #2185D0;
+
+$zero-value: 0;
+
+/* Hidden */
+.hidden.menu {
+    display: none;
+}
+
+/* Global Part */
+.ui.vertical.stripe {
+    padding: 8em 0em;
+    h3 {
+        font-size: 2em;
+    }
+    .button + h3, p + h3 {
+        margin-top: 3em;
+    }
+    .floated.image {
+        clear: both;
+    }
+    p {
+        font-size: 1.33em;
+    }
+    .horizontal.divider {
+        margin: 3em 0em;
+    }
+}
+
+.ui.square {
+    border-radius: $zero-value;
+    border: $zero-value;
+}
+
+.ui.input input {
+    border-radius: $zero-value;
+}
+
+.ui.action.input input {
+    padding-right: 10.671429em!important;
+}
+
+.ui.action.input>.button, .ui.action.input>.buttons>.button {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.ui.action.input:not([class*="left action"])>.button:last-child {
+    border-radius: $zero-value;
+}
+
+.ui.button, .ui.basic.button {
+    border-radius: $zero-value;
+}
+
+.ui.card, .ui.cards>.card {
+    border: none;
+    border-radius: $zero-value;
+    .image {
+        background: transparent;
+    }
+}
+
+.ui.card, .ui.cards > .card:hover {
+    border: solid 1px $color-blue-primary;
+}
+
+.ui.tabular.menu .active.item {
+    border-radius: 0 0 0 0!important;
+}
+
+.ui.menu .dropdown.item .menu {
+    border-radius: 0 0 0 0;
+}
+
+.ui.vertical.menu>.item:last-child {
+    border-radius: 0 0 0 0;
+}
+
+.ui.menu .ui.dropdown .menu>.item:hover, .ui.menu .ui.dropdown .menu>.selected.item {
+    background: rgb(33, 133, 208) !important;
+    color: rgba(255, 255, 255, 1)!important;
+}
+
+.ui.inverted.blue.button, .ui.inverted.blue.buttons .button{
+    box-shadow: 0 0 0 1px $color-blue-primary inset!important;
+    color: $color-blue-primary;
+}
+
+.ui.inverted.blue.button:hover, .ui.inverted.blue.buttons .button:hover {
+    background-color: $color-blue-primary;
+}
+
+.ui.inverted.blue.button:active, .ui.inverted.blue.buttons .button:active {
+    background-color: $color-blue-primary;
+}
+
+.ui.inverted.blue.button:focus, .ui.inverted.blue.buttons .button:focus {
+    background-color: $color-blue-primary;
+}
+
+.ui.table {
+    border: $zero-value;
+    border-radius: $zero-value;
+}
+
+.ui.table {
+    thead th {
+        background: none;
+        border-bottom: $zero-value;
+    }
+    tfoot th {
+        background: none;
+        border-top: $zero-value;
+    }
+    tr td {
+        border-top: $zero-value;
+    }
+}
+
+.ui.label {
+    border-radius: $zero-value
+}
+
+.ui.form input:not([type]), .ui.form input[type=text], .ui.form input[type=email], .ui.form input[type=search], .ui.form input[type=password], .ui.form input[type=date], .ui.form input[type=datetime-local], .ui.form input[type=tel], .ui.form input[type=time], .ui.form input[type=file], .ui.form input[type=url], .ui.form input[type=number] {
+    border-radius: $zero-value;
+}
+
+.ui.form input:not([type]):focus, .ui.form input[type=text]:focus, .ui.form input[type=email]:focus, .ui.form input[type=search]:focus, .ui.form input[type=password]:focus, .ui.form input[type=date]:focus, .ui.form input[type=datetime-local]:focus, .ui.form input[type=tel]:focus, .ui.form input[type=time]:focus, .ui.form input[type=file]:focus, .ui.form input[type=url]:focus, .ui.form input[type=number]:focus {
+    border-radius: $zero-value;
+}
+
+.ui.checkbox .box:before, .ui.checkbox label:before {
+    border-radius: $zero-value;
+}
+
+.ui.checkbox input:checked~.box:after, .ui.checkbox input:checked~label:after {
+    color: $color-blue-primary;
+}
+
+/* body */
+body {
+    background: $body-color;
+    background-color: $body-color;
+}
+
+#login-regis {
+    background: $color-white;
+    background-color: $color-white;
+}
+
+
+/* Menu */
+#nav-header {
+    margin: $zero-value;
+}
+
+#kategori-header {
+    color: $color-blue-primary;
+}
+
+/* Kategori */
+.category-top-section {
+    margin-top: 2em;
+}
+
+#category {
+    padding: 1em;
+    border-top: solid 2px $color-blue-primary;
+}
+
+.ui.menu a.item.kategori:hover {
+    color: $color-white;
+    background: $color-blue-primary;
+}
+
+/* Banner */
+#banner {
+    padding: $zero-value;
+    margin-bottom: $zero-value;
+}
+
+.center-cropped {
+    object-fit: none;
+    object-position: center;
+    width: 100%;
+    height: 440px;
+}
+
+/* Icon Kategori */
+.custom-section {
+    margin-top: 3em;
+}
+
+/* Slick */
+.slick-dots {
+    bottom: 50px;
+}
+
+.slick-prev {
+    left: 30px;
+    z-index: 2;
+}
+
+.slick-next {
+    right: 30px;
+    z-index: 2;
+}
+
+.slick-prev:before, .slick-next:before {
+    font-size: 30px;
+}
+
+/* Kelebihan Custom */
+#custom {
+    position: relative;
+    height: 100%;
+    bottom: 80px;
+}
+
+/* Icon Kategori */
+.ico-category-section {
+    margin-top: -4em;
+}
+
+/* Show Barang */
+.showroom-section {
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+
+.barang-section {
+    margin-bottom: 3em;
+}
+
+#show-barang {
+    border-radius: $zero-value;
+    border-left: $zero-value;
+    border-right: $zero-value;
+    border-bottom: $zero-value;
+}
+
+/* list item */
+.title-product-section {
+    margin-left: 2em;
+}
+
+#title-kategori {
+    padding-left: 1em;
+}
+
+#list-item {
+    margin-top: 2em;
+    margin-bottom: 3em;
+}
+
+/* Breadcrumb */
+
+/* Detail product */
+.detail-top-section {
+    margin-top: 2em;
+}
+
+.title-detail-section {
+    margin-top: 2em;
+}
+
+.detail-product-section {
+    margin-top: 1em;
+}
+
+#detail-item {
+    margin-bottom: 3em;
+}
+
+.ui.image.thumbnail {
+    margin-bottom: 1em;
+}
+
+.ui.thumbnail:hover {
+    border: solid 1px $color-blue-primary;
+}
+
+.ui.full-image {
+    max-width: 340px;
+    max-height: 340px;
+}
+
+#image-product {
+    padding-left: $zero-value;
+}
+
+#height-custom {
+    height: 215px;
+    max-height: 215px;
+    border-radius: 0;
+}
+
+/* Cart */
+.nav-cart {
+    margin-top: 2em;
+    margin-bottom: 3em;
+}
+
+.title-cart {
+    margin-bottom: 2em;
+}
+
+/* Sosial */
+
+/* Footer */
+.footer-section {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.ui.inverted.segment, .ui.primary.inverted.segment{
+    background: $color-light-grey;
+    color: $color-black;
+}
+
+.ui.link.list a.item {
+    color: $color-black;
+}
+
+@media only screen and (max-width: 700px) {
+    .ui.fixed.menu {
+    display: none !important;
+    }
+    .masthead.segment {
+    min-height: 350px;
+    }
+}
+
+/* Login & Regis */
+#top-login-regis {
+    margin: .5em 0 .5em 0;
+}
+
+#content-login-regis {
+    max-width: 500px;
+}
