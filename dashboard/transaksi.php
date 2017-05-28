@@ -1,7 +1,5 @@
 <br/>
 
-<div class="ui menu borderless square">
-  <div class="item header">
-    Transaksi
-  </div>
+<div class="ui menu square">
+	<a href="?d=transaksi" class="item header">Transaksi</a>
 </div>

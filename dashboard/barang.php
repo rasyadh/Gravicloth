@@ -1,9 +1,7 @@
 <br/>
 
-<div class="ui menu borderless square">
-  <div class="item header">
-    Barang
-  </div>
+<div class="ui menu square">
+  <a href="?d=barang" class="item header">Barang</a>
 </div>
 
 <div class="ui blue padded segment square">
@@ -13,6 +11,7 @@
           <tr>
             <th>ID Barang</th>
             <th>Nama Barang</th>
+            <th>Kategori Barang</th>
             <th>Deskripsi Barang</th>
             <th>Stok</th>
             <th>Harga</th>
@@ -24,11 +23,12 @@
           <?php
             include 'config/dbconfig.php';
             $pdo = Database::connect();
-            $sql = 'SELECT * FROM product ORDER BY id_product ASC';
+            $sql = 'SELECT p.id_product, p.product_name, pc.category_name, p.product_description, p.stock, p.price, p.created_at FROM product p, product_category pc WHERE p.id_category = pc.id_category ORDER BY id_product ASC';
             foreach ($pdo->query($sql) as $row){
               echo '<tr>';
               echo '<td>'. $row['id_product'] . '</td>';
               echo '<td>'. $row['product_name'] . '</td>';
+              echo '<td>'. $row['category_name'] . '</td>';
               echo '<td>'. $row['product_description'] . '</td>';
               echo '<td>'. $row['stock'] . '</td>';
               echo '<td>'.'Rp '. $row['price'] . '</td>';
@@ -51,6 +51,20 @@
             <input type="text" name="product-name" placeholder="Nama Barang">
         </div>
         <div class="field">
+          <label>Kategori Barang</label>
+          <select class="ui search dropdown" name="category-name">
+            <option value="">Pilih Kategori Barang</option>
+            <?php
+              $pdo = Database::connect();
+              $sql = 'SELECT id_category, category_name FROM product_category ORDER BY id_category ASC';
+              foreach ($pdo->query($sql) as $row){
+                echo '<option value="'.$row['id_category'].'">'.$row['category_name'].'</option>';
+              }
+              Database::disconnect();
+            ?>
+          </select>
+        </div>  
+        <div class="field">
             <label>Deskripsi Barang</label>
             <textarea type="text" name="product-description"></textarea>
         </div>
@@ -68,6 +82,7 @@
         <input class="ui primary button" name="add-product" type="submit" value="Tambah Barang">
     </form>
 </div>
+</br>
 
 <div class="ui modal update">
   <i class="close icon"></i>
@@ -77,10 +92,24 @@
   <div class="content">
     <form class="ui form" action="<?php $_PHP_SELF ?>" method="post">
       <input id="id" type="hidden" name="id" value="">
-      <div class="field">
+        <div class="field">
             <label>Nama Barang</label>
             <input id="nama" type="text" name="name" placeholder="Nama Barang" value="">
         </div>
+        <div class="field">
+          <label>Kategori Barang</label>
+          <select class="ui search dropdown" name="category">
+            <option value="">Pilih Kategori Barang</option>
+            <?php
+              $pdo = Database::connect();
+              $sql = 'SELECT id_category, category_name FROM product_category ORDER BY id_category ASC';
+              foreach ($pdo->query($sql) as $row){
+                echo '<option value="'.$row['id_category'].'">'.$row['category_name'].'</option>';
+              }
+              Database::disconnect();
+            ?>
+          </select>
+        </div>  
         <div class="field">
             <label>Deskripsi Barang</label>
             <textarea id="deskripsi" type="text" name="description"></textarea>
@@ -122,6 +151,7 @@
 <?php 
   if (isset($_POST['add-product'])){
     $product_name = $_POST['product-name'];
+    $category_name = $_POST['category-name'];
     $product_description = $_POST['product-description'];
     $product_stock = $_POST['product-stock'];
     $product_price = $_POST['product-price'];
@@ -130,9 +160,9 @@
     if ($valid){
       $pdo = Database::connect();
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = 'INSERT INTO product (product_name, product_description, stock, price) values (?, ?, ?, ?)';
+      $sql = 'INSERT INTO product (id_category, product_name, product_description, stock, price) values (?, ?, ?, ?, ?)';
       $q = $pdo->prepare($sql);
-      $q->execute(array($product_name, $product_description, $product_stock, $product_price));
+      $q->execute(array($category_name, $product_name, $product_description, $product_stock, $product_price));
       Database::disconnect();
     }
   }
@@ -142,6 +172,7 @@
   if (isset($_POST['update-product'])){
     $id_product = $_POST['id'];
     $product_name = $_POST['name'];
+    $category_name = $_POST['category'];
     $product_description = $_POST['description'];
     $product_stock = $_POST['stock'];
     $product_price = $_POST['price'];
@@ -150,9 +181,9 @@
     if ($valid){
       $pdo = Database::connect();
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = "UPDATE product  set product_name = ?, product_description = ?, stock = ?, price = ? WHERE id_product = ?";
+      $sql = "UPDATE product  set id_category = ?, product_name = ?, product_description = ?, stock = ?, price = ? WHERE id_product = ?";
       $q = $pdo->prepare($sql);
-      $q->execute(array($product_name, $product_description, $product_stock, $product_price, $id_product));
+      $q->execute(array($category_name, $product_name, $product_description, $product_stock, $product_price, $id_product));
       Database::disconnect();
     }
   }
@@ -195,7 +226,6 @@
   }
 
   function del(id, nama){
-    console.log(id);
     $('#id_del').empty();
     $('#id_del').append(id);
     $('#id_del').attr('value',id);
@@ -204,4 +234,6 @@
     $('#nama-del').attr('value',nama);
     $('.ui.modal.delete').modal('show');
   }
+
+  $('.ui.search.dropdown').dropdown();
 </script>

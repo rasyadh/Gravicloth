@@ -28,6 +28,7 @@
         <?php include 'layout/partials/header.php'; ?>
 
         <?php 
+        include 'config/dbconfig.php';
         $pages_dir = 'layout';
         //$category_dir = 'layout/temp-cat';
         $category = ['kaos', 'kemeja', 'jaket', 'polo', 'sweater', 'tas', 'celana'];

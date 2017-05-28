@@ -1,7 +1,5 @@
 <br/>
 
-<div class="ui menu borderless square">
-  <div class="item header">
-    User
-  </div>
+<div class="ui menu square">
+	<a href="?d=user" class="item header">User</a>
 </div>

@@ -2,10 +2,16 @@
         <section class="home-top-section">
             <div class="banner-section">
                 <section class="ui segment banner slider square" id="banner">
-                    <div><img class="center-cropped" src="public/images/banner/banner-1.jpg"></div>
-                    <div><img class="center-cropped" src="public/images/banner/banner-2.jpg"></div>
-                    <div><img class="center-cropped" src="public/images/banner/banner-3.jpg"></div>
-                    <div><img class="center-cropped" src="public/images/banner/banner-4.jpg"></div>
+                    <?php 
+                        $pdo = Database::connect();
+                        $sql = 'SELECT banner_url FROM banner ORDER BY id_banner ASC';
+                        foreach ($pdo->query($sql) as $row){
+                            echo '<div>';
+                            echo '<img class="center-cropped" src="'.$row['banner_url'].'">';
+                            echo '</div>';
+                        }
+                        Database::disconnect();
+                    ?>
                 </section>
             </div>
         </section>
@@ -48,17 +54,18 @@
             <div class="ui very padded container">
                 <div class="ui stackable equal width grid">
                     <?php 
+                        $list_kategory = ['Kaos', 'Kemeja', 'Jaket', 'Polo', 'Sweater', 'Tas', 'Celana'];
                         $list_ico_kategory = ['ico_kaos.svg', 'ico_kemeja.svg', 'ico_polo.svg', 'ico_hoodie.svg', 'ico_sweater.svg', 'ico_tas.svg', 'ico_celana.svg'];
                         for($i = 0; $i < sizeof($list_ico_kategory); $i++){
                     ?>
 
                     <div class="column">
                         <div class="ui very padded segment square">
-                            <a class="ui tiny image" href="?p=content-category">
-                                <?php 
-                                    echo '<img src="public/images/'.$list_ico_kategory[$i].'">';
-                                ?>
-                            </a>
+                        <?php 
+                            echo '<a class="ui tiny image" href="?p='.strtolower($list_kategory[$i]).'">';
+                            echo '<img src="public/images/'.$list_ico_kategory[$i].'">';
+                            echo '</a>';
+                        ?>
                         </div>
                     </div>
 
@@ -73,7 +80,6 @@
             <div class="ui container">
 
                 <?php 
-                $list_kategory = ['Kaos', 'Kemeja', 'Jaket', 'Polo', 'Sweater', 'Tas', 'Celana'];
                 for($i = 0; $i < sizeof($list_kategory); $i++){ ?>
                     <div class="barang-section">
                         <div class="ui blue very padded segment" id="show-barang">
@@ -100,7 +106,7 @@
                                         </a>';
                                         echo '<div class="content">
                                                 <a class="header" href="#">'.
-                                                    'Kaos '.($x + 1).
+                                                    $list_kategory[$i].' '.($x + 1).
                                                 '</a>
                                                 <div class="meta">
                                                     <a>'.'Rp '.((10000 * $x) + 10000).'</a>

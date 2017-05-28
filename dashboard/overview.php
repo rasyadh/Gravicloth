@@ -1,9 +1,7 @@
 <br/>
 	
-<div class="ui menu borderless square">
-	  <div class="item header">
-		Reporting Overview
-	  </div>
+<div class="ui menu square">
+	<a href="?d=overview" class="item header">Overview</a>
 </div>
 
 <div class="ui blue padded segment square">

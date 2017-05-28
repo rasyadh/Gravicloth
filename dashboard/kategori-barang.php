@@ -1,9 +1,7 @@
 <br/>
 
-<div class="ui menu borderless square">
-  <div class="item header">
-    Kategori Barang
-  </div>
+<div class="ui menu square">
+  <a href="?d=kategori-barang" class="item header">Kategori Barang</a>
 </div>
 
 <div class="ui blue padded segment square">
@@ -13,7 +11,6 @@
           <tr>
             <th>ID Kategori</th>
             <th>Nama Kategori</th>
-            <th>Detail Kategori</th>
             <th>Edit</th>
           </tr>
         </thead>
@@ -21,14 +18,13 @@
           <?php 
             include 'config/dbconfig.php';
             $pdo = Database::connect();
-            $sql = 'SELECT * FROM product_category ORDER BY id_product_category ASC';
+            $sql = 'SELECT * FROM product_category ORDER BY id_category ASC';
             foreach ($pdo->query($sql) as $row){
                 echo '<tr>';
-                echo '<td>'.$row['id_product_category'].'</td>';
+                echo '<td>'.$row['id_category'].'</td>';
                 echo '<td>'.$row['category_name'].'</td>';
-                echo '<td>'.$row['category_detail'].'</td>';
-                echo '<td>'.'<a class="ui green button" onclick="update(\''.$row['id_product_category'].'\', \''.$row['category_name'].'\', \''.$row['category_detail'].'\')">Update</a>';
-                echo '<a class="ui red button" onclick="del(\''.$row['id_product_category'].'\', \''.$row['category_name'].'\')">Delete</a></td>';
+                echo '<td>'.'<a class="ui green button" onclick="update(\''.$row['id_category'].'\', \''.$row['category_name'].'\')">Update</a>';
+                echo '<a class="ui red button" onclick="del(\''.$row['id_category'].'\', \''.$row['category_name'].'\')">Delete</a></td>';
                 echo '</tr>';
             }
             Database::disconnect();
@@ -43,10 +39,6 @@
     <div class="field">
       <label>Nama Kategori</label>
       <input type="text" name="category-name" placeholder="Nama Kategori">
-    </div>
-    <div class="field">
-      <label>Detail Kategori</label>
-      <textarea type="text" name="category-detail"></textarea>
     </div>
     <input class="ui primary button" name="add-category" type="submit" value="Tambah Kategori">
   </form>
@@ -63,10 +55,6 @@
       <div class="field">
         <label>Nama Kategori</label>
         <input id="cat-name-update" type="text" name="cat-name-update" placeholder="Nama Kategori" value="">
-      </div>
-      <div class="field">
-        <label>Detail Kategori</label>
-        <textarea id="cat-detail-update" type="text" name="cat-detail-update"></textarea>
       </div>
       <input class="ui primary button" name="update-category" type="submit" value="Update">
     </form>
@@ -94,15 +82,14 @@
 <?php
   if (isset($_POST['add-category'])){
     $category_name = $_POST['category-name'];
-    $category_detail = $_POST['category-detail'];
     $valid = true;
 
     if($valid){
       $pdo = Database::connect();
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = 'INSERT INTO product_category (category_name, category_detail) values (?, ?)';
+      $sql = 'INSERT INTO product_category (category_name) values (?)';
       $q = $pdo->prepare($sql);
-      $q->execute(array($category_name, $category_detail));
+      $q->execute(array($category_name));
       Database::disconnect();
     }
   }
@@ -112,15 +99,14 @@
   if (isset($_POST['update-category'])){
     $id_product_category = $_POST['id_update'];
     $category_name = $_POST['cat-name-update'];
-    $category_detail = $_POST['cat-detail-update'];
     $valid = true;
 
     if($valid){
       $pdo = Database::connect();
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = 'UPDATE product_category SET category_name = ? , category_detail = ? WHERE id_product_category = ?';
+      $sql = 'UPDATE product_category SET category_name = ? WHERE id_product_category = ?';
       $q = $pdo->prepare($sql);
-      $q->execute(array($category_name, $category_detail, $id_product_category));
+      $q->execute(array($category_name, $id_product_category));
       Database::disconnect();
     }
   }
@@ -150,9 +136,6 @@
     $('#cat-name-update').empty();
     $('#cat-name-update').append(nama);
     $('#cat-name-update').attr('value',nama);
-    $('#cat-detail-update').empty();
-    $('#cat-detail-update').append(detail);
-    $('#cat-detail-update').attr('value',detail);
     $('.ui.modal.update').modal('show');
   }
 
