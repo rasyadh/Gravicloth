@@ -5,9 +5,9 @@
     <section class="breadcrumb-section">
         <div class="ui container">
             <div class="ui breadcrumb">
-                <a class="section">Home</a>
+                <a class="section" href="?=home">Home</a>
                 <div class="divider"> / </div>
-                <a class="section">Store</a>
+                <a class="section">Category</a>
                 <div class="divider"> / </div>
                 <div class="active section">Kemeja</div>
             </div>

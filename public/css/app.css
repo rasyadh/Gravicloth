@@ -55,6 +55,17 @@
 .ui.vertical.menu > .item:last-child {
   border-radius: 0 0 0 0; }
 
+.ui.vertical.menu > .active.item:last-child {
+  border-radius: 0 0 0 0; }
+
+.ui.vertical.menu .active.item {
+  background: #2185D0;
+  color: white; }
+
+.ui.menu .active.item:hover, .ui.vertical.menu .active.item:hover {
+  background: #2185D0;
+  color: white; }
+
 .ui.menu .ui.dropdown .menu > .item:hover, .ui.menu .ui.dropdown .menu > .selected.item {
   background: #2185d0 !important;
   color: white !important; }

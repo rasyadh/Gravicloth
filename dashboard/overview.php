@@ -1,16 +1,9 @@
 <br/>
 	
-<div class="ui menu square">  
+<div class="ui menu borderless square">
 	  <div class="item header">
 		Reporting Overview
 	  </div>
-	  
-	  <div class="right menu">
-		<a class="active teal item">
-			Updates
-			<div class="ui teal label">14</div>
-		</a>
-	 </div>
 </div>
 
 <div class="ui blue padded segment square">

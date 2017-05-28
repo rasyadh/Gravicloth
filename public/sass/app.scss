@@ -82,6 +82,20 @@ $zero-value: 0;
     border-radius: 0 0 0 0;
 }
 
+.ui.vertical.menu>.active.item:last-child {
+    border-radius: 0 0 0 0;
+}
+
+.ui.vertical.menu .active.item {
+    background: $color-blue-primary;
+    color: $color-white;
+}
+
+.ui.menu .active.item:hover, .ui.vertical.menu .active.item:hover {
+    background: $color-blue-primary;
+    color: $color-white;
+}
+
 .ui.menu .ui.dropdown .menu>.item:hover, .ui.menu .ui.dropdown .menu>.selected.item {
     background: rgb(33, 133, 208) !important;
     color: rgba(255, 255, 255, 1)!important;

@@ -13,7 +13,13 @@
                         <?php 
                         $list_kategory = ['Kaos', 'Kemeja', 'Jaket', 'Polo', 'Sweater', 'Tas', 'Celana'];
                         for($i = 0; $i < sizeof($list_kategory); $i++){ 
-                            echo '<a class="item kategori">'.$list_kategory[$i].'</a>';
+                            if (strtolower($list_kategory[$i]) == $cat_selected){
+                                $category = $list_kategory[$i];
+                                echo '<a class="item active kategori" href="?p='.$cat_selected.'">'.$list_kategory[$i].'</a>';
+                            }
+                            else {
+                                echo '<a class="item kategori" href="?p='.strtolower($list_kategory[$i]).'">'.$list_kategory[$i].'</a>';
+                            }
                         }
                         ?>
                     </div>
@@ -25,7 +31,9 @@
                     <section class="ui padded segment square">
                         <div class="ui container">
                             <div class="ui header" id="title-kategori">
-                                Kategori "Kemeja"
+                                <?php
+                                    echo 'Kategori "'.$category.'"';
+                                ?>
                             </div>
                         </div>
                     </section>
@@ -40,11 +48,11 @@
                                         <img src="public/images/gravicloth-logo.png">
                                     </a>';
                                     echo '<div class="content">
-                                            <a class="header" href="#">'.
-                                                'Kaos '.($x + 1).
+                                            <a class="header" href="?p=content-detail">'.
+                                                $category.' '.($x + 1).
                                             '</a>
                                             <div class="meta">
-                                                <a>'.'Rp '.((10000 * $x) + 10000).'</a>
+                                                <a href="?p=content-detail">'.'Rp '.((10000 * $x) + 10000).'</a>
                                             </div>
                                         </div>';
                                     echo '</div>';

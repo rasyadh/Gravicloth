@@ -20,34 +20,24 @@
                         </div>
                     </div>
                     <div class="ui divider"></div>
-                    <div class="ui stackable equal width padded grid">
+                    <div class="ui stackable equal width padded grid" style="padding-left: 2em; padding-right: 2em;">
+                    <?php
+                        $custom_adv = [["Desain", "Desain yang beragam.", "diamond"], ["Warna", "Warna sesuai keinginan.", "theme"], ["Ukuran", "Ukuran sesuai kebutuhan.", "sort"]];
+                        for ($i = 0; $i < sizeof($custom_adv); $i++){
+                    ?>
                         <div class="column">
                             <h4 class="ui header">
-                                <i class="blue diamond icon"></i>
-                                <div class="content">
-                                    Desain
-                                    <div class="sub header">Desain yang beragam.</div>
-                                </div>
+                            <?php
+                            echo '<i class="blue '.$custom_adv[$i][2].' icon"></i>'.
+                                    '<div class="content">'.$custom_adv[$i][0].
+                                    '<div class="sub header">'.$custom_adv[$i][1].'</div>'.
+                                    '</div>';
+                            ?>
                             </h4>
                         </div>
-                        <div class="column">
-                            <h4 class="ui header">
-                                <i class="blue theme icon"></i>
-                                <div class="content">
-                                    Warna
-                                    <div class="sub header">Warna sesuai keinginan.</div>
-                                </div>
-                            </h4>
-                        </div>
-                        <div class="column">
-                            <h4 class="ui header">
-                                <i class="blue sort icon"></i>
-                                <div class="content">
-                                    Ukuran
-                                    <div class="sub header">Ukuran sesuai kebutuhan</div>
-                                </div>
-                            </h4>
-                        </div>
+                    <?php
+                        }
+                    ?>
                     </div>
                 </div>
             </div>
@@ -59,7 +49,7 @@
                 <div class="ui stackable equal width grid">
                     <?php 
                         $list_ico_kategory = ['ico_kaos.svg', 'ico_kemeja.svg', 'ico_polo.svg', 'ico_hoodie.svg', 'ico_sweater.svg', 'ico_tas.svg', 'ico_celana.svg'];
-                        for($i = 0; $i < 7; $i++){
+                        for($i = 0; $i < sizeof($list_ico_kategory); $i++){
                     ?>
 
                     <div class="column">

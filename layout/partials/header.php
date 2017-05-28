@@ -3,7 +3,7 @@
             <div class="ui fixed hidden borderless menu square" id="nav-header">
                 <div class="ui container">
                     <div class="item">
-                        <a href="?=content-home">
+                        <a href="?=home">
                             <img class="ui small image" src="public/images/logo.png">
                         </a>
                     </div>
@@ -12,13 +12,13 @@
                             <strong>Kategori</strong>
                             <i class="dropdown icon"></i>
                             <div class="menu">
-                                <a href="?p=content-category" class="item">Kaos</a>
-                                <a href="?p=content-category" class="item">Kemeja</a>
-                                <a href="?p=content-category" class="item">Polo</a>
-                                <a href="?p=content-category" class="item">Jaket</a>
-                                <a href="?p=content-category" class="item">Sweater</a>
-                                <a href="?p=content-category" class="item">Tas</a>
-                                <a href="?p=content-category" class="item">Celana</a>
+                                <a href="?p=kaos" class="item">Kaos</a>
+                                <a href="?p=kemeja" class="item">Kemeja</a>
+                                <a href="?p=polo" class="item">Polo</a>
+                                <a href="?p=jaket" class="item">Jaket</a>
+                                <a href="?p=sweater" class="item">Sweater</a>
+                                <a href="?p=tas" class="item">Tas</a>
+                                <a href="?p=celana" class="item">Celana</a>
                             </div>
                         </div>
 
@@ -49,7 +49,7 @@
             <div class="ui borderless menu square" id="nav-header">
                 <div class="ui container">
                     <div class="item">
-                        <a href="?=content-home">
+                        <a href="?=home">
                             <img class="ui small image" src="public/images/logo.png">
                         </a>
                     </div>
@@ -58,13 +58,13 @@
                             <strong>Kategori</strong>
                             <i class="dropdown icon"></i>
                             <div class="menu">
-                                <a href="?p=content-category" class="item">Kaos</a>
-                                <a href="?p=content-category" class="item">Kemeja</a>
-                                <a href="?p=content-category" class="item">Polo</a>
-                                <a href="?p=content-category" class="item">Jaket</a>
-                                <a href="?p=content-category" class="item">Sweater</a>
-                                <a href="?p=content-category" class="item">Tas</a>
-                                <a href="?p=content-category" class="item">Celana</a>
+                                <a href="?p=kaos" class="item">Kaos</a>
+                                <a href="?p=kemeja" class="item">Kemeja</a>
+                                <a href="?p=polo" class="item">Polo</a>
+                                <a href="?p=jaket" class="item">Jaket</a>
+                                <a href="?p=sweater" class="item">Sweater</a>
+                                <a href="?p=tas" class="item">Tas</a>
+                                <a href="?p=celana" class="item">Celana</a>
                             </div>
                         </div>
 

@@ -42,7 +42,7 @@
             </tr>
             <tr>
               <th colspan="3">
-                <a href="/gravicloth" class="ui inverted blue button">Belanja Lagi</a>
+                <a href="?p=content-home" class="ui inverted blue button">Belanja Lagi</a>
                 <a class="ui right floated primary button">
                   Lanjutkan Pembayaran
                 </a>

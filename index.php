@@ -29,20 +29,30 @@
 
         <?php 
         $pages_dir = 'layout';
+        //$category_dir = 'layout/temp-cat';
+        $category = ['kaos', 'kemeja', 'jaket', 'polo', 'sweater', 'tas', 'celana'];
+
         if (!empty($_GET['p'])){
             $pages = scandir($pages_dir, 0);
 			unset($pages[0], $pages[1]);
+            // $category_pages = scandir($category_dir, 0);
+            // unset($category_pages[0], $category_pages[1]);
  
 			$p = $_GET['p'];
             
 			if(in_array($p.'.php', $pages)){
 				include($pages_dir.'/'.$p.'.php');
-			} else {
-				echo 'Halaman tidak ditemukan! :(';
+			} 
+            else if (in_array($p, $category)) {
+                $cat_selected = $p;
+                include($pages_dir.'/content-category.php');
+            }
+            else {
+				include($pages_dir.'/404.php');
 			}
         }
         else {
-            include($pages_dir.'/content-home.php');
+            include($pages_dir.'/home.php');
         }
         ?>
 
