@@ -31,7 +31,7 @@
 
         <?php 
         $pages_dir = 'layout';
-        $category = ['kaos', 'kemeja', 'jaket', 'polo', 'sweater', 'tas', 'celana'];
+        $category = ['kaos', 'kemeja', 'jaket', 'polo', 'sweatshirt', 'tas', 'celana'];
 
         if (!empty($_GET['p'])){
             $pages = scandir($pages_dir, 0);

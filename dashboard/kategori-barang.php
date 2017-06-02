@@ -104,7 +104,7 @@
     if($valid){
       $pdo = Database::connect();
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = 'UPDATE product_category SET category_name = ? WHERE id_product_category = ?';
+      $sql = 'UPDATE product_category SET category_name = ? WHERE id_category = ?';
       $q = $pdo->prepare($sql);
       $q->execute(array($category_name, $id_product_category));
       Database::disconnect();
@@ -120,7 +120,7 @@
     if($valid){
       $pdo = Database::connect();
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = "DELETE FROM product_category WHERE id_product_category = ?";
+      $sql = "DELETE FROM product_category WHERE id_category = ?";
       $q = $pdo->prepare($sql);
       $q->execute(array($id_product_category));
       Database::disconnect();

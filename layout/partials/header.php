@@ -1,6 +1,6 @@
 <header class="header">
-            <!-- Following Header -->
-            <div class="ui fixed hidden borderless menu square" id="nav-header">
+            <!-- Header Menu -->
+            <div class="ui borderless menu square" id="nav-header">
                 <div class="ui container">
                     <div class="item">
                         <a href="?=home">
@@ -13,10 +13,12 @@
                             <i class="dropdown icon"></i>
                             <div class="menu">
                                <?php
+                                    $list_cat = [];
                                     $pdo = Database::connect();
                                     $sql = 'SELECT category_name FROM product_category ORDER BY id_category ASC';
                                     foreach ($pdo->query($sql) as $row){
                                         echo '<a class="item" href="?p='.strtolower($row['category_name']).'">'.$row['category_name'].'</a>';
+                                        array_push($list_cat, $row['category_name']);
                                     }
                                     Database::disconnect();
                                 ?>
@@ -46,8 +48,8 @@
                 </div>
             </div>
 
-            <!-- Menu -->
-            <div class="ui borderless menu square" id="nav-header">
+            <!-- Following Header -->
+            <div class="ui fixed hidden borderless menu square" id="nav-header">
                 <div class="ui container">
                     <div class="item">
                         <a href="?=home">
@@ -60,12 +62,9 @@
                             <i class="dropdown icon"></i>
                             <div class="menu">
                                 <?php
-                                    $pdo = Database::connect();
-                                    $sql = 'SELECT category_name FROM product_category ORDER BY id_category ASC';
-                                    foreach ($pdo->query($sql) as $row){
-                                        echo '<a class="item" href="?p='.strtolower($row['category_name']).'">'.$row['category_name'].'</a>';
+                                    foreach ($list_cat as $row){
+                                        echo '<a class="item" href="?p='.strtolower($row).'">'.$row.'</a>';
                                     }
-                                    Database::disconnect();
                                 ?>
                             </div>
                         </div>

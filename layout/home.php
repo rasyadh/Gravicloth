@@ -55,16 +55,17 @@
                 <div class="ui stackable equal width grid">
                     <?php 
                         $pdo = Database::connect();
-                        $sql = 'SELECT category_name FROM product_category ORDER BY id_category ASC';
+                        $sql = 'SELECT p.id_product, p.product_image, p.product_name, p.price FROM product p WHERE p.id_category = ? ORDER BY id_product ASC LIMIT 5';
+                        $q = $pdo->prepare($sql);
                         $list_ico_kategory = ['ico_kaos.svg', 'ico_kemeja.svg', 'ico_polo.svg', 'ico_hoodie.svg', 'ico_sweater.svg', 'ico_tas.svg', 'ico_celana.svg'];
                         $i = 0;
-                        foreach ($pdo->query($sql) as $row){
+                        foreach ($list_cat as $row){
                     ?>
 
                     <div class="column">
                         <div class="ui very padded segment square">
                         <?php 
-                            echo '<a class="ui tiny image" href="?p='.strtolower($row['category_name']).'">';
+                            echo '<a class="ui tiny image" href="?p='.strtolower($row).'">';
                             echo '<img src="public/images/'.$list_ico_kategory[$i].'">';
                             echo '</a>';
                             $i++;
@@ -85,18 +86,19 @@
             <div class="ui container">
 
                 <?php 
-                    foreach ($pdo->query($sql) as $row){
+                    $j = 1;
+                    foreach ($list_cat as $row){
                 ?>
                     <div class="barang-section">
                         <div class="ui blue very padded segment" id="show-barang">
                             <div class="ui stackable grid">
                                 <div class="eight wide column">
                                     <div class="ui left aligned header">
-                                        <?= $row['category_name']; ?>
+                                        <?= $row; ?>
                                     </div>
                                 </div>
                                 <div class="eight wide column">
-                                    <a href="?p=content-category" class="ui right floated inverted blue button">Lihat Selengkapnya</a>
+                                    <a href="?p=<?= strtolower($row); ?>" class="ui right floated inverted blue button">Lihat Selengkapnya</a>
                                 </div>
                             </div>
 
@@ -105,21 +107,22 @@
                             <div class="ui container">
                                 <div class="ui five stackable cards">
 
-                                    <?php for($x = 0; $x < 5; $x++) {
-                                        echo '<div class="card">';
-                                        echo '<a class="image" href="?p=content-detail">
-                                            <img src="public/images/gravicloth-logo.png">
-                                        </a>';
-                                        echo '<div class="content">
-                                                <a class="header" href="#">'.
-                                                    $row['category_name'].' '.($x + 1).
-                                                '</a>
-                                                <div class="meta">
-                                                    <a>'.'Rp '.((10000 * $x) + 10000).'</a>
-                                                </div>
-                                            </div>';
-                                        echo '</div>';
-                                    }
+                                    <?php 
+                                        if ($q->execute(array($j))){
+                                            foreach($q as $nrow) {
+                                            echo '<div class="card">';
+                                            echo '<a class="image" href="?p=content-detail">
+                                                <img src="'.$nrow['product_image'].'">
+                                            </a>';
+                                            echo '<div class="content">
+                                                    <a class="header" href="?p=content-detail">'.$nrow['product_name'].'</a>
+                                                    <div class="meta">
+                                                        <a href="?p=content-detail">'.'Rp '.$nrow['price'].'</a>
+                                                    </div>
+                                                </div>';
+                                            echo '</div>';
+                                            }
+                                        }
                                     ?>
                                     
                                 </div>
@@ -127,6 +130,7 @@
                         </div>
                     </div>
                 <?php 
+                    $j++;
                     } 
                     Database::disconnect();
                 ?>            
