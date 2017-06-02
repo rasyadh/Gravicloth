@@ -54,22 +54,27 @@
             <div class="ui very padded container">
                 <div class="ui stackable equal width grid">
                     <?php 
-                        $list_kategory = ['Kaos', 'Kemeja', 'Jaket', 'Polo', 'Sweater', 'Tas', 'Celana'];
+                        $pdo = Database::connect();
+                        $sql = 'SELECT category_name FROM product_category ORDER BY id_category ASC';
                         $list_ico_kategory = ['ico_kaos.svg', 'ico_kemeja.svg', 'ico_polo.svg', 'ico_hoodie.svg', 'ico_sweater.svg', 'ico_tas.svg', 'ico_celana.svg'];
-                        for($i = 0; $i < sizeof($list_ico_kategory); $i++){
+                        $i = 0;
+                        foreach ($pdo->query($sql) as $row){
                     ?>
 
                     <div class="column">
                         <div class="ui very padded segment square">
                         <?php 
-                            echo '<a class="ui tiny image" href="?p='.strtolower($list_kategory[$i]).'">';
+                            echo '<a class="ui tiny image" href="?p='.strtolower($row['category_name']).'">';
                             echo '<img src="public/images/'.$list_ico_kategory[$i].'">';
                             echo '</a>';
+                            $i++;
                         ?>
                         </div>
                     </div>
 
-                    <?php } ?>
+                    <?php 
+                        }
+                    ?>
 
                 </div>
             </div>
@@ -80,13 +85,14 @@
             <div class="ui container">
 
                 <?php 
-                for($i = 0; $i < sizeof($list_kategory); $i++){ ?>
+                    foreach ($pdo->query($sql) as $row){
+                ?>
                     <div class="barang-section">
                         <div class="ui blue very padded segment" id="show-barang">
                             <div class="ui stackable grid">
                                 <div class="eight wide column">
                                     <div class="ui left aligned header">
-                                        <?= $list_kategory[$i] ?>
+                                        <?= $row['category_name']; ?>
                                     </div>
                                 </div>
                                 <div class="eight wide column">
@@ -106,7 +112,7 @@
                                         </a>';
                                         echo '<div class="content">
                                                 <a class="header" href="#">'.
-                                                    $list_kategory[$i].' '.($x + 1).
+                                                    $row['category_name'].' '.($x + 1).
                                                 '</a>
                                                 <div class="meta">
                                                     <a>'.'Rp '.((10000 * $x) + 10000).'</a>
@@ -120,7 +126,10 @@
                             </div>
                         </div>
                     </div>
-                <?php } ?>            
+                <?php 
+                    } 
+                    Database::disconnect();
+                ?>            
 
             </div>
         </section>

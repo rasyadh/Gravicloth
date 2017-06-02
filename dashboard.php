@@ -13,9 +13,13 @@
 
     <link rel="stylesheet" type="text/css" href="public/css/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="public/css/dashboard.css">
+    <!--<link rel="stylesheet" type="text/css" href="public/css/dataTables.semanticui.min.css">-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 
     <script src="public/javascript/jquery.min.js"></script>
     <script src="public/javascript/semantic.min.js"></script>
+    <!--<script src="public/javascript/dataTables.semanticui.min.js"></script>-->
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <script src="public/javascript/Chart.min.js"></script>
     <script src="public/javascript/moment.js"></script>
 </head>

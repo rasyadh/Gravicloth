@@ -7,6 +7,4 @@ $(document).on('ready', function () {
         fade: true,
         cssEase: 'linear'
     });
-
-    
 });

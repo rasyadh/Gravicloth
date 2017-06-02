@@ -25,19 +25,17 @@
 
 <body>
     <div class="pusher">
-        <?php include 'layout/partials/header.php'; ?>
-
         <?php 
         include 'config/dbconfig.php';
+        include 'layout/partials/header.php'; ?>
+
+        <?php 
         $pages_dir = 'layout';
-        //$category_dir = 'layout/temp-cat';
         $category = ['kaos', 'kemeja', 'jaket', 'polo', 'sweater', 'tas', 'celana'];
 
         if (!empty($_GET['p'])){
             $pages = scandir($pages_dir, 0);
 			unset($pages[0], $pages[1]);
-            // $category_pages = scandir($category_dir, 0);
-            // unset($category_pages[0], $category_pages[1]);
  
 			$p = $_GET['p'];
             

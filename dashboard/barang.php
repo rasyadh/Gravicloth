@@ -6,13 +6,15 @@
 
 <div class="ui blue padded segment square">
   <div class="ui header">List Barang</div>
-    <table class="ui stackable structured table">
+    <table class="ui stackable structured table" id="myTable">
         <thead>
           <tr>
             <th>ID Barang</th>
             <th>Nama Barang</th>
+            <th>Image</th>
             <th>Kategori Barang</th>
             <th>Deskripsi Barang</th>
+            <th>Warna</th>
             <th>Stok</th>
             <th>Harga</th>
             <th>Created at</th>
@@ -23,13 +25,15 @@
           <?php
             include 'config/dbconfig.php';
             $pdo = Database::connect();
-            $sql = 'SELECT p.id_product, p.product_name, pc.category_name, p.product_description, p.stock, p.price, p.created_at FROM product p, product_category pc WHERE p.id_category = pc.id_category ORDER BY id_product ASC';
+            $sql = 'SELECT p.id_product, p.product_name, p.product_image, pc.category_name, p.product_description, c.color_name, p.stock, p.price, p.created_at FROM product p, product_category pc, color c WHERE p.id_category = pc.id_category and p.id_color = c.id_color ORDER BY id_product ASC';
             foreach ($pdo->query($sql) as $row){
               echo '<tr>';
               echo '<td>'. $row['id_product'] . '</td>';
               echo '<td>'. $row['product_name'] . '</td>';
+              echo '<td><img class="ui tiny image" src="'. $row['product_image'] .'"></td>';
               echo '<td>'. $row['category_name'] . '</td>';
               echo '<td>'. $row['product_description'] . '</td>';
+              echo '<td>'. $row['color_name'] .'</td>';
               echo '<td>'. $row['stock'] . '</td>';
               echo '<td>'.'Rp '. $row['price'] . '</td>';
               echo '<td>'. $row['created_at'] . '</td>';
@@ -40,12 +44,29 @@
             Database::disconnect();
           ?>
         </tbody>
+        <!--<tfoot>
+          <tr><th colspan="10">
+            <div class="ui right floated pagination menu">
+              <a class="icon item">
+                <i class="left chevron icon"></i>
+              </a>
+              <a class="item">1</a>
+              <a class="item">2</a>
+              <a class="item">3</a>
+              <a class="item">4</a>
+              <a class="icon item">
+                <i class="right chevron icon"></i>
+              </a>
+            </div>
+            </th>
+          </tr>
+        </tfoot>-->
     </table>
 </div>
 
 <div class="ui blue padded segment square">
   <div class="ui header">Tambah Barang</div>
-    <form class="ui form" action="<?php $_PHP_SELF ?>" method="post">
+    <form class="ui form" action="<?php $_PHP_SELF ?>" method="post" enctype="multipart/form-data">
         <div class="field">
             <label>Nama Barang</label>
             <input type="text" name="product-name" placeholder="Nama Barang">
@@ -57,7 +78,7 @@
             <?php
               $pdo = Database::connect();
               $sql = 'SELECT id_category, category_name FROM product_category ORDER BY id_category ASC';
-              foreach ($pdo->query($sql) as $row){
+              foreach ($pdo->query($sql) as $row){  
                 echo '<option value="'.$row['id_category'].'">'.$row['category_name'].'</option>';
               }
               Database::disconnect();
@@ -69,6 +90,21 @@
             <textarea type="text" name="product-description"></textarea>
         </div>
         <div class="field">
+          <label>Warna Barang</label>
+          <select class="ui search dropdown" name="color-name">
+            <option value="">Pilih Warna Barang</option>
+            <div class="item">
+            <?php
+              $pdo = Database::connect();
+              $sql = 'SELECT id_color, color_name FROM color ORDER BY id_color ASC';
+              foreach ($pdo->query($sql) as $row){  
+                echo '<option value="'.$row['id_color'].'">'.$row['color_name'].'</option>';
+              }
+              Database::disconnect();
+            ?>
+          </select>
+        </div>  
+        <div class="field">
             <label>Stok Barang</label>
             <input type="number" name="product-stock" placeholder="Stok Barang">
         </div>
@@ -78,6 +114,10 @@
                 <div class="ui label">Rp</div>
                 <input type="number" name="product-price" placeholder="Harga Barang">
             </div>
+        </div>
+        <div class="field">
+            <label>Upload Barang</label>
+            <input type="file" name="product-img" accept="image/*">
         </div>
         <input class="ui primary button" name="add-product" type="submit" value="Tambah Barang">
     </form>
@@ -153,16 +193,40 @@
     $product_name = $_POST['product-name'];
     $category_name = $_POST['category-name'];
     $product_description = $_POST['product-description'];
+    $product_color = $_POST['color-name'];
     $product_stock = $_POST['product-stock'];
     $product_price = $_POST['product-price'];
-    $valid = true;
 
-    if ($valid){
+    $imgFile = $_FILES['product-img']['name'];
+    $tmp_dir = $_FILES['product-img']['tmp_name'];
+    $imgSize = $_FILES['product-img']['size'];
+
+    if ($imgFile){
+      $upload_dir = 'public/images/product/';
+      $imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION));
+      $valid_extensions = array('jpeg', 'jpg', 'png', 'webp');
+      $productpic = $product_name.".".$imgExt;
+
+      if (in_array($imgExt, $valid_extensions)){
+        if ($imgSize < 5000000){
+          move_uploaded_file($tmp_dir,$upload_dir.$productpic);
+          $product_url = $upload_dir.$productpic;
+        }
+        else {
+          $errMsg = "Image too large";
+        }
+      }
+      else {
+        $errMsg = "File type unsupported";
+      }
+    }
+
+    if (!isset($errMsg)){
       $pdo = Database::connect();
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = 'INSERT INTO product (id_category, product_name, product_description, stock, price) values (?, ?, ?, ?, ?)';
+      $sql = 'INSERT INTO product (id_category, product_image, product_name, product_description, id_color, stock, price) values (?, ?, ?, ?, ?, ?, ?)';
       $q = $pdo->prepare($sql);
-      $q->execute(array($category_name, $product_name, $product_description, $product_stock, $product_price));
+      $q->execute(array($category_name, $product_url, $product_name, $product_description, $product_color, $product_stock, $product_price));
       Database::disconnect();
     }
   }
@@ -236,4 +300,8 @@
   }
 
   $('.ui.search.dropdown').dropdown();
+
+  $(document).ready(function(){
+    $('#myTable').DataTable();
+});
 </script>

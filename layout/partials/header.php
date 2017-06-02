@@ -12,13 +12,14 @@
                             <strong>Kategori</strong>
                             <i class="dropdown icon"></i>
                             <div class="menu">
-                                <a href="?p=kaos" class="item">Kaos</a>
-                                <a href="?p=kemeja" class="item">Kemeja</a>
-                                <a href="?p=polo" class="item">Polo</a>
-                                <a href="?p=jaket" class="item">Jaket</a>
-                                <a href="?p=sweater" class="item">Sweater</a>
-                                <a href="?p=tas" class="item">Tas</a>
-                                <a href="?p=celana" class="item">Celana</a>
+                               <?php
+                                    $pdo = Database::connect();
+                                    $sql = 'SELECT category_name FROM product_category ORDER BY id_category ASC';
+                                    foreach ($pdo->query($sql) as $row){
+                                        echo '<a class="item" href="?p='.strtolower($row['category_name']).'">'.$row['category_name'].'</a>';
+                                    }
+                                    Database::disconnect();
+                                ?>
                             </div>
                         </div>
 
@@ -58,13 +59,14 @@
                             <strong>Kategori</strong>
                             <i class="dropdown icon"></i>
                             <div class="menu">
-                                <a href="?p=kaos" class="item">Kaos</a>
-                                <a href="?p=kemeja" class="item">Kemeja</a>
-                                <a href="?p=polo" class="item">Polo</a>
-                                <a href="?p=jaket" class="item">Jaket</a>
-                                <a href="?p=sweater" class="item">Sweater</a>
-                                <a href="?p=tas" class="item">Tas</a>
-                                <a href="?p=celana" class="item">Celana</a>
+                                <?php
+                                    $pdo = Database::connect();
+                                    $sql = 'SELECT category_name FROM product_category ORDER BY id_category ASC';
+                                    foreach ($pdo->query($sql) as $row){
+                                        echo '<a class="item" href="?p='.strtolower($row['category_name']).'">'.$row['category_name'].'</a>';
+                                    }
+                                    Database::disconnect();
+                                ?>
                             </div>
                         </div>
 
