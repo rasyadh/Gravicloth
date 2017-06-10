@@ -1,4 +1,7 @@
 <?php
+
+// session_start();
+
 class Database
 {
     private static $dbName = 'clothdb' ;
@@ -34,4 +37,8 @@ class Database
         self::$cont = null;
     }
 }
+
+// include_once 'class.user.php';
+// $user = new User(Database::connect());
+
 ?>

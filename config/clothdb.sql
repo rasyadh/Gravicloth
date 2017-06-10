@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2017 at 10:16 AM
+-- Generation Time: Jun 06, 2017 at 05:50 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -19,6 +19,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `clothdb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `banner`
+--
+
+CREATE TABLE `banner` (
+  `id_banner` int(11) NOT NULL,
+  `banner_name` varchar(20) NOT NULL,
+  `banner_description` text NOT NULL,
+  `banner_url` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `banner`
+--
+
+INSERT INTO `banner` (`id_banner`, `banner_name`, `banner_description`, `banner_url`, `status`) VALUES
+(1, 'Gravicloth Banner', 'Deskripsi Gravicloth Custom Clothing.', 'public/images/banner/Gravicloth Banner.jpg', 0),
+(2, 'Custom All', 'Kelebihan Gravicloth yaitu custom desain, warna, dan ukuran.', 'public/images/banner/Custom All.jpg', 0),
+(3, 'Free Ongkir', 'Pengiriman gratis dan cepat ke seluruh Indonesia.', 'public/images/banner/Free Ongkir.jpg', 0),
+(4, 'Diskon Modulus', 'Diskon 20% dengan kode voucher MODULUS', 'public/images/banner/Diskon Modulus.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -540,8 +564,30 @@ INSERT INTO `city` (`id_city`, `id_province`, `city_name`) VALUES
 
 CREATE TABLE `color` (
   `id_color` int(11) NOT NULL,
+  `color_name` varchar(20) NOT NULL,
   `hex_color` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `color`
+--
+
+INSERT INTO `color` (`id_color`, `color_name`, `hex_color`) VALUES
+(1, 'Hitam', '#262626'),
+(2, 'Abu - abu', '#a5a5a5'),
+(3, 'Putih', '#f0f0f0'),
+(4, 'Charcoal', '#6a6a6a'),
+(5, 'Cokelat', '#554634'),
+(6, 'Biru', '#31327f'),
+(7, 'Navy', '#383e55'),
+(8, 'Ungu', '#6b427d'),
+(9, 'Hijau', '#008e4c'),
+(10, 'Merah', '#bc0007'),
+(11, 'Merah muda', '#fc6c9a'),
+(12, 'Burgundy', '#933756'),
+(13, 'Oranye', '#fd4e39'),
+(14, 'Kuning', '#f2ba00'),
+(15, 'Teal', '#01acac');
 
 -- --------------------------------------------------------
 
@@ -564,8 +610,10 @@ CREATE TABLE `design` (
 CREATE TABLE `product` (
   `id_product` int(11) NOT NULL,
   `id_category` int(11) NOT NULL,
+  `product_image` varchar(255) NOT NULL,
   `product_name` varchar(50) NOT NULL,
   `product_description` text NOT NULL,
+  `id_color` int(11) NOT NULL,
   `stock` int(11) NOT NULL,
   `price` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -575,8 +623,79 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id_product`, `id_category`, `product_name`, `product_description`, `stock`, `price`, `created_at`) VALUES
-(1, 1, 'Kaos Strip', 'Kaos Strip dapat memiliki berbagai macam custom desain, warna, serta ukuran yang beragam.', 10, 50000, '2017-05-26 08:17:40');
+INSERT INTO `product` (`id_product`, `id_category`, `product_image`, `product_name`, `product_description`, `id_color`, `stock`, `price`, `created_at`) VALUES
+(1, 1, 'public/images/product/Kaos Premium Putih.webp', 'Kaos Premium Putih', 'Kaos Premium Polos Putih', 3, 10, 80000, '2017-06-01 06:10:05'),
+(2, 1, 'public/images/product/Kaos Premium Hitam.webp', 'Kaos Premium Hitam', 'Kaos Premium Polos Hitam', 1, 10, 80000, '2017-06-01 06:10:54'),
+(3, 1, 'public/images/product/Kaos Premium Abu - Abu.webp', 'Kaos Premium Abu - Abu', 'Kaos Premium Polos Abu - Abu', 2, 10, 80000, '2017-06-01 06:11:40'),
+(4, 1, 'public/images/product/Kaos Premium Cokelat.webp', 'Kaos Premium Cokelat', 'Kaos Premium Polos Cokelat', 5, 10, 80000, '2017-06-01 06:16:37'),
+(5, 1, 'public/images/product/Kaos Premium Biru.webp', 'Kaos Premium Biru', 'Kaos Premium Polos Biru', 6, 10, 80000, '2017-06-01 06:21:49'),
+(6, 1, 'public/images/product/Kaos Premium Navy.webp', 'Kaos Premium Navy', 'Kaos Premium Polos Navy', 7, 10, 80000, '2017-06-01 06:22:16'),
+(7, 1, 'public/images/product/Kaos Premium Merah.webp', 'Kaos Premium Merah', 'Kaos Premium Polos Merah', 10, 10, 80000, '2017-06-01 06:26:34'),
+(8, 1, 'public/images/product/Kaos Premium Ungu.webp', 'Kaos Premium Ungu', 'Kaos Premium Polos Ungu', 8, 10, 80000, '2017-06-01 06:29:08'),
+(9, 1, 'public/images/product/Kaos Premium Hijau.webp', 'Kaos Premium Hijau', 'Kaos Premium Polos Hijau', 9, 10, 80000, '2017-06-01 06:29:51'),
+(10, 1, 'public/images/product/Kaos Premium Kuning.webp', 'Kaos Premium Kuning', 'Kaos Premium Polos Kuning', 14, 10, 80000, '2017-06-01 06:30:31'),
+(11, 1, 'public/images/product/Kaos Ringer Putih.webp', 'Kaos Ringer Putih', 'Kaos Ringer Putih', 3, 5, 85000, '2017-06-02 14:49:25'),
+(12, 1, 'public/images/product/Kaos Ringer Hitam.webp', 'Kaos Ringer Hitam', 'Kaos Ringer Hitam', 1, 5, 85000, '2017-06-02 14:50:06'),
+(13, 1, 'public/images/product/Kaos Vintage Hitam.webp', 'Kaos Vintage Hitam', 'Kaos Vintage Hitam Strip', 1, 15, 90000, '2017-06-02 14:51:51'),
+(14, 1, 'public/images/product/Kaos Vintage Biru.webp', 'Kaos Vintage Biru', 'Kaos Vintage Biru Strip', 6, 15, 90000, '2017-06-02 14:52:53'),
+(15, 1, 'public/images/product/Kaos Vintage Navy.webp', 'Kaos Vintage Navy', 'Kaos Vintage Navy Strip', 7, 15, 90000, '2017-06-02 14:53:34'),
+(16, 1, 'public/images/product/Kaos Vintage Merah.webp', 'Kaos Vintage Merah', 'Kaos Vintage Merah Strip', 10, 15, 90000, '2017-06-02 14:54:20'),
+(17, 1, 'public/images/product/Kaos Baseball Putih.webp', 'Kaos Baseball Putih', 'Kaos Baseball Putih', 3, 5, 85000, '2017-06-02 14:55:55'),
+(18, 1, 'public/images/product/Kaos Baseball Hitam.webp', 'Kaos Baseball Hitam', 'Kaos Baseball Hitam', 1, 5, 85000, '2017-06-02 14:56:42'),
+(19, 1, 'public/images/product/Kaos Baseball Navy.webp', 'Kaos Baseball Navy', 'Kaos Baseball Navy', 7, 5, 85000, '2017-06-02 14:57:21'),
+(20, 1, 'public/images/product/Kaos Baseball Merah.webp', 'Kaos Baseball Merah', 'Kaos Baseball Merah', 10, 5, 85000, '2017-06-02 14:57:59'),
+(21, 1, 'public/images/product/Kaos Baseball Hijau.webp', 'Kaos Baseball Hijau', 'Kaos Baseball Hijau', 9, 5, 85000, '2017-06-02 14:58:25'),
+(22, 1, 'public/images/product/Kaos V-Neck Putih.webp', 'Kaos V-Neck Putih', 'Kaos V-Neck Putih', 3, 5, 80000, '2017-06-02 14:59:26'),
+(23, 1, 'public/images/product/Kaos V-Neck Hitam.webp', 'Kaos V-Neck Hitam', 'Kaos V-Neck Hitam', 1, 5, 80000, '2017-06-02 15:00:00'),
+(24, 1, 'public/images/product/Kaos V-Neck Abu - Abu.webp', 'Kaos V-Neck Abu - Abu', 'Kaos V-Neck Abu - Abu', 2, 5, 80000, '2017-06-02 15:00:46'),
+(25, 1, 'public/images/product/Kaos V-Neck Biru.webp', 'Kaos V-Neck Biru', 'Kaos V-Neck Biru', 6, 5, 80000, '2017-06-02 15:01:19'),
+(26, 1, 'public/images/product/Kaos V-Neck Navy.webp', 'Kaos V-Neck Navy', 'Kaos V-Neck Navy', 7, 5, 80000, '2017-06-02 15:01:51'),
+(27, 1, 'public/images/product/Kaos V-Neck Teal.webp', 'Kaos V-Neck Teal', 'Kaos V-Neck Teal', 15, 5, 80000, '2017-06-02 15:02:20'),
+(28, 3, 'public/images/product/Polo Hitam.webp', 'Polo Hitam', 'Polo Polos Hitam', 1, 15, 90000, '2017-06-02 15:04:04'),
+(29, 3, 'public/images/product/Polo Biru.webp', 'Polo Biru', 'Polo Polos Biru', 6, 15, 90000, '2017-06-02 15:04:41'),
+(30, 3, 'public/images/product/Polo Navy.webp', 'Polo Navy', 'Polo Polos Navy', 7, 15, 90000, '2017-06-02 15:05:03'),
+(31, 3, 'public/images/product/Polo Merah.webp', 'Polo Merah', 'Polo Polos Merah', 10, 15, 90000, '2017-06-02 15:05:50'),
+(32, 4, 'public/images/product/Jaket Premium Hitam.webp', 'Jaket Premium Hitam', 'Jaket Hoodie Premium Hitam', 1, 10, 120000, '2017-06-02 15:24:43'),
+(33, 4, 'public/images/product/Jaket Premium Charcoal.webp', 'Jaket Premium Charcoal', 'Jaket Hoodie Premium Charcoal', 4, 10, 120000, '2017-06-02 15:25:05'),
+(34, 4, 'public/images/product/Jaket Premium Abu - Abu.webp', 'Jaket Premium Abu - Abu', 'Jaket Hoodie Premium Abu - Abu', 2, 10, 120000, '2017-06-02 15:25:23'),
+(35, 4, 'public/images/product/Jaket Premium Navy.webp', 'Jaket Premium Navy', 'Jaket Hoodie Premium Navy', 7, 10, 120000, '2017-06-02 15:25:42'),
+(36, 4, 'public/images/product/Jaket Premium Merah.webp', 'Jaket Premium Merah', 'Jaket Hoodie Premium Merah', 10, 10, 120000, '2017-06-02 15:25:57'),
+(37, 4, 'public/images/product/Jaket Premium Burgundy.webp', 'Jaket Premium Burgundy', 'Jaket Hoodie Premium Burgundy', 12, 10, 120000, '2017-06-02 15:26:22'),
+(38, 4, 'public/images/product/Jaket Lightweight Hitam.webp', 'Jaket Lightweight Hitam', 'Jaket Hoodie Lightweight Hitam', 1, 5, 120000, '2017-06-02 15:27:41'),
+(39, 4, 'public/images/product/Jaket Lightweight Navy.webp', 'Jaket Lightweight Navy', 'Jaket Hoodie Lightweight Navy', 7, 10, 120000, '2017-06-02 15:27:41'),
+(40, 4, 'public/images/product/Jaket Heavyweight Hitam.webp', 'Jaket Heavyweight Hitam', 'Jaket Hoodie Heavyweight Hitam', 1, 10, 150000, '2017-06-02 15:28:28'),
+(41, 4, 'public/images/product/Jaket Heavyweight Charcoal.webp', 'Jaket Heavyweight Charcoal', 'Jaket Hoodie Heavyweight Charcoal', 4, 10, 150000, '2017-06-02 15:28:28'),
+(42, 4, 'public/images/product/Jaket Heavyweight Abu - Abu.webp', 'Jaket Heavyweight Abu - Abu', 'Jaket Hoodie Heavyweight Abu - Abu', 2, 10, 150000, '2017-06-02 15:28:28'),
+(43, 4, 'public/images/product/Jaket Heavyweight Navy.webp', 'Jaket Heavyweight Navy', 'Jaket Hoodie Heavyweight Navy', 7, 10, 150000, '2017-06-02 15:28:28'),
+(44, 4, 'public/images/product/Jaket Fleece Hitam.webp', 'Jaket Fleece Hitam', 'Jaket Hoodie Fleece Hitam', 1, 15, 150000, '2017-06-02 15:28:28'),
+(45, 4, 'public/images/product/Jaket Fleece Abu - Abu.webp', 'Jaket Fleece Abu - Abu', 'Jaket Hoodie Fleece Abu - Abu', 2, 15, 150000, '2017-06-02 15:29:26'),
+(46, 4, 'public/images/product/Jaket Fleece Biru.webp', 'Jaket Fleece Biru', 'Jaket Hoodie Fleece Biru', 6, 15, 150000, '2017-06-02 15:29:54'),
+(47, 4, 'public/images/product/Jaket Fleece Merah.webp', 'Jaket Fleece Merah', 'Jaket Hoodie Fleece Merah', 10, 15, 150000, '2017-06-02 15:30:22'),
+(48, 4, 'public/images/product/Jaket Fleece Teal.webp', 'Jaket Fleece Teal', 'Jaket Hoodie Fleece Teal', 15, 15, 150000, '2017-06-02 15:30:47'),
+(49, 4, 'public/images/product/Jaket Contrast Putih.webp', 'Jaket Contrast Putih', 'Jaket Hoodie Contrast Putih', 3, 15, 150000, '2017-06-02 15:32:01'),
+(50, 4, 'public/images/product/Jaket Contrast Hitam.webp', 'Jaket Contrast Hitam', 'Jaket Hoodie Contrast Hitam', 1, 15, 150000, '2017-06-02 15:32:34'),
+(51, 4, 'public/images/product/Jaket Contrast Abu - Abu.webp', 'Jaket Contrast Abu - Abu', 'Jaket Hoodie Contrast Abu - Abu', 2, 15, 150000, '2017-06-02 15:33:03'),
+(52, 4, 'public/images/product/Jaket Contrast Biru.webp', 'Jaket Contrast Biru', 'Jaket Hoodie Contrast Biru', 6, 15, 150000, '2017-06-02 15:33:33'),
+(53, 4, 'public/images/product/Jaket Contrast Navy.webp', 'Jaket Contrast Navy', 'Jaket Hoodie Contrast Navy', 7, 15, 150000, '2017-06-02 15:34:03'),
+(54, 4, 'public/images/product/Jaket Contrast Teal.webp', 'Jaket Contrast Teal', 'Jaket Hoodie Contrast Teal', 15, 15, 150000, '2017-06-02 15:34:51'),
+(55, 5, 'public/images/product/Sweatshirt Sleeve Putih.webp', 'Sweatshirt Sleeve Putih', 'Sweatshirt Sleeve Putih', 3, 10, 120000, '2017-06-02 15:40:06'),
+(56, 5, 'public/images/product/Sweatshirt Sleeve Charcoal.webp', 'Sweatshirt Sleeve Charcoal', 'Sweatshirt Sleeve Charcoal', 4, 10, 120000, '2017-06-02 15:40:43'),
+(57, 5, 'public/images/product/Sweatshirt Sleeve Biru.webp', 'Sweatshirt Sleeve Biru', 'Sweatshirt Sleeve Biru', 6, 10, 120000, '2017-06-02 15:41:14'),
+(58, 6, 'public/images/product/Tas Tote Hitam.webp', 'Tas Tote Hitam', 'Tas Tote Hitam', 1, 10, 100000, '2017-06-02 15:43:35'),
+(59, 6, 'public/images/product/Tas Tote Biru.webp', 'Tas Tote Biru', 'Tas Tote Biru', 6, 10, 100000, '2017-06-02 15:44:06'),
+(60, 6, 'public/images/product/Tas Tote Oranye.webp', 'Tas Tote Oranye', 'Tas Tote Oranye', 13, 10, 100000, '2017-06-02 15:44:31'),
+(61, 6, 'public/images/product/Tas Tote Ungu.webp', 'Tas Tote Ungu', 'Tas Tote Ungu', 8, 10, 100000, '2017-06-02 15:44:55'),
+(62, 6, 'public/images/product/Tas Tote Merah.webp', 'Tas Tote Merah', 'Tas Tote Merah', 10, 10, 100000, '2017-06-02 15:45:16'),
+(63, 6, 'public/images/product/Tas Backpack Hitam.webp', 'Tas Backpack Hitam', 'Tas Backpack Hitam', 1, 10, 180000, '2017-06-02 15:46:38'),
+(64, 6, 'public/images/product/Tas Backpack Navy.webp', 'Tas Backpack Navy', 'Tas Backpack Navy', 7, 10, 180000, '2017-06-02 15:47:45'),
+(65, 6, 'public/images/product/Tas Backpack Merah.webp', 'Tas Backpack Merah', 'Tas Backpack Merah', 10, 10, 180000, '2017-06-02 15:48:09'),
+(66, 6, 'public/images/product/Tas Backpack Merah Muda.webp', 'Tas Backpack Merah Muda', 'Tas Backpack Merah Muda', 11, 10, 180000, '2017-06-02 15:48:35'),
+(67, 6, 'public/images/product/Tas Retro Biru.webp', 'Tas Retro Biru', 'Tas Retro Biru', 6, 10, 180000, '2017-06-02 15:49:42'),
+(68, 6, 'public/images/product/Tas Retro Merah.webp', 'Tas Retro Merah', 'Tas Retro Merah', 10, 10, 180000, '2017-06-02 15:50:08'),
+(69, 6, 'public/images/product/Tas Retro Ungu.webp', 'Tas Retro Ungu', 'Tas Retro Ungu', 8, 10, 180000, '2017-06-02 15:50:32'),
+(70, 6, 'public/images/product/Tas Laptop Charcoal.webp', 'Tas Laptop Charcoal', 'Tas Laptop Charcoal', 4, 10, 200000, '2017-06-02 15:51:28'),
+(71, 6, 'public/images/product/Tas Laptop Biru.webp', 'Tas Laptop Biru', 'Tas Laptop Biru', 6, 10, 200000, '2017-06-02 15:51:53'),
+(72, 6, 'public/images/product/Tas Laptop Merah.webp', 'Tas Laptop Merah', 'Tas Laptop Merah', 10, 10, 200000, '2017-06-02 15:52:26');
 
 -- --------------------------------------------------------
 
@@ -594,7 +713,13 @@ CREATE TABLE `product_category` (
 --
 
 INSERT INTO `product_category` (`id_category`, `category_name`) VALUES
-(1, 'Kaos');
+(1, 'Kaos'),
+(2, 'Kemeja'),
+(3, 'Polo'),
+(4, 'Jaket'),
+(5, 'Sweatshirt'),
+(6, 'Tas'),
+(7, 'Celana');
 
 -- --------------------------------------------------------
 
@@ -754,7 +879,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `id_role`, `name`, `email`, `password`, `created_at`) VALUES
-(1, 1, 'admin', 'admincloth@gravicodev.id', 'admincloth', '2017-05-26 09:06:23');
+(1, 1, 'Admin', 'admincloth@gravicodev.id', 'admincloth', '2017-06-02 14:25:08');
 
 -- --------------------------------------------------------
 
@@ -764,7 +889,9 @@ INSERT INTO `user` (`id_user`, `id_role`, `name`, `email`, `password`, `created_
 
 CREATE TABLE `user_detail` (
   `id_user` int(11) NOT NULL,
+  `profile_pict` varchar(255) NOT NULL,
   `date_of_birth` date NOT NULL,
+  `gender` varchar(1) NOT NULL,
   `address` varchar(255) NOT NULL,
   `phone_number` varchar(15) NOT NULL,
   `id_province` int(11) NOT NULL,
@@ -776,12 +903,18 @@ CREATE TABLE `user_detail` (
 -- Dumping data for table `user_detail`
 --
 
-INSERT INTO `user_detail` (`id_user`, `date_of_birth`, `address`, `phone_number`, `id_province`, `id_city`, `postal_code`) VALUES
-(1, '1996-08-18', 'Dupak 5 / No. 42', '083856535951', 11, 158, 60171);
+INSERT INTO `user_detail` (`id_user`, `profile_pict`, `date_of_birth`, `gender`, `address`, `phone_number`, `id_province`, `id_city`, `postal_code`) VALUES
+(1, 'public\\images\\profile\\admin.jpg', '2017-06-02', 'L', 'Admin Page', '083856535951', 11, 158, 60171);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `banner`
+--
+ALTER TABLE `banner`
+  ADD PRIMARY KEY (`id_banner`);
 
 --
 -- Indexes for table `city`
@@ -807,7 +940,8 @@ ALTER TABLE `design`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id_product`),
-  ADD KEY `id_category` (`id_category`);
+  ADD KEY `id_category` (`id_category`),
+  ADD KEY `id_color` (`id_color`);
 
 --
 -- Indexes for table `product_category`
@@ -884,6 +1018,11 @@ ALTER TABLE `user_detail`
 --
 
 --
+-- AUTO_INCREMENT for table `banner`
+--
+ALTER TABLE `banner`
+  MODIFY `id_banner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
@@ -892,7 +1031,7 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT for table `color`
 --
 ALTER TABLE `color`
-  MODIFY `id_color` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_color` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `design`
 --
@@ -902,12 +1041,12 @@ ALTER TABLE `design`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 --
 -- AUTO_INCREMENT for table `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `promo`
 --
@@ -952,7 +1091,8 @@ ALTER TABLE `city`
 -- Constraints for table `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `product_category` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `product_category` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`id_color`) REFERENCES `color` (`id_color`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `promo`

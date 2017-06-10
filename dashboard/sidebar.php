@@ -13,10 +13,10 @@
         <i class="user icon"></i>User
     </a>
     <a class="item" href="?d=kategori-barang">
-        <i class="settings icon"></i>Kategori Barang
+        <i class="tags icon"></i>Kategori Barang
     </a>
     <a class="item" href="?d=barang">
-        <i class="settings icon"></i>Barang
+        <i class="shopping bag icon"></i>Barang
     </a>
     <a class="item" href="?d=banner">
         <i class="image icon"></i>Banner

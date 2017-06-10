@@ -44,23 +44,6 @@
             Database::disconnect();
           ?>
         </tbody>
-        <!--<tfoot>
-          <tr><th colspan="10">
-            <div class="ui right floated pagination menu">
-              <a class="icon item">
-                <i class="left chevron icon"></i>
-              </a>
-              <a class="item">1</a>
-              <a class="item">2</a>
-              <a class="item">3</a>
-              <a class="item">4</a>
-              <a class="icon item">
-                <i class="right chevron icon"></i>
-              </a>
-            </div>
-            </th>
-          </tr>
-        </tfoot>-->
     </table>
 </div>
 
@@ -227,6 +210,11 @@
       $sql = 'INSERT INTO product (id_category, product_image, product_name, product_description, id_color, stock, price) values (?, ?, ?, ?, ?, ?, ?)';
       $q = $pdo->prepare($sql);
       $q->execute(array($category_name, $product_url, $product_name, $product_description, $product_color, $product_stock, $product_price));
+      ?>
+        <script type="text/javascript">
+        window.location.href = 'http://localhost/gravicloth/dashboard.php?d=barang';
+        </script>
+      <?php
       Database::disconnect();
     }
   }
@@ -248,6 +236,11 @@
       $sql = "UPDATE product  set id_category = ?, product_name = ?, product_description = ?, stock = ?, price = ? WHERE id_product = ?";
       $q = $pdo->prepare($sql);
       $q->execute(array($category_name, $product_name, $product_description, $product_stock, $product_price, $id_product));
+      ?>
+        <script type="text/javascript">
+        window.location.href = 'http://localhost/gravicloth/dashboard.php?d=barang';
+        </script>
+      <?php
       Database::disconnect();
     }
   }
@@ -264,6 +257,11 @@
       $sql = "DELETE FROM product WHERE id_product = ?";
       $q = $pdo->prepare($sql);
       $q->execute(array($id_product));
+      ?>
+        <script type="text/javascript">
+        window.location.href = 'http://localhost/gravicloth/dashboard.php?d=barang';
+        </script>
+      <?php
       Database::disconnect();
     }
   }

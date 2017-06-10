@@ -6,7 +6,7 @@
 
 <div class="ui blue padded segment square">
   <div class="ui header">List Kategori</div> 
-    <table class="ui stackable structured table">
+    <table class="ui stackable structured table" id="myTable">
         <thead>
           <tr>
             <th>ID Kategori</th>
@@ -90,6 +90,11 @@
       $sql = 'INSERT INTO product_category (category_name) values (?)';
       $q = $pdo->prepare($sql);
       $q->execute(array($category_name));
+      ?>
+        <script type="text/javascript">
+        window.location.href = 'http://localhost/gravicloth/dashboard.php?d=kategori-barang';
+        </script>
+      <?php
       Database::disconnect();
     }
   }
@@ -107,6 +112,11 @@
       $sql = 'UPDATE product_category SET category_name = ? WHERE id_category = ?';
       $q = $pdo->prepare($sql);
       $q->execute(array($category_name, $id_product_category));
+      ?>
+        <script type="text/javascript">
+        window.location.href = 'http://localhost/gravicloth/dashboard.php?d=kategori-barang';
+        </script>
+      <?php
       Database::disconnect();
     }
   }
@@ -123,6 +133,11 @@
       $sql = "DELETE FROM product_category WHERE id_category = ?";
       $q = $pdo->prepare($sql);
       $q->execute(array($id_product_category));
+      ?>
+        <script type="text/javascript">
+        window.location.href = 'http://localhost/gravicloth/dashboard.php?d=kategori-barang';
+        </script>
+      <?php
       Database::disconnect();
     }
   }
@@ -148,4 +163,9 @@
     $('#cat-name-del').attr('value',nama);
     $('.ui.modal.delete').modal('show');
   }
+
+	$(document).ready(function(){
+    	$('#myTable').DataTable();
+	});
+
 </script>

@@ -6,7 +6,7 @@
 
 <div class="ui blue padded segment square">
   <div class="ui header">List Banner</div> 
-    <table class="ui stackable structured compact table">
+    <table class="ui stackable structured compact table" id="myTable">
         <thead>
           <tr>
             <th>ID Banner</th>
@@ -146,6 +146,11 @@
       $sql = 'INSERT INTO banner (banner_name, banner_description, banner_url, status) values (?, ?, ?, ?)';
       $q = $pdo->prepare($sql);
       $q->execute(array($banner_name, $banner_description, $banner_url, $banner_status));
+      ?>
+        <script type="text/javascript">
+        window.location.href = 'http://localhost/gravicloth/dashboard.php?d=banner';
+        </script>
+      <?php
       Database::disconnect();
     }
   }
@@ -189,6 +194,11 @@
       $sql = 'UPDATE banner  set banner_name = ?, banner_description = ? WHERE id_banner = ?';
       $q = $pdo->prepare($sql);
       $q->execute(array($banner_name, $banner_description, $id_banner));
+      ?>
+        <script type="text/javascript">
+        window.location.href = 'http://localhost/gravicloth/dashboard.php?d=banner';
+        </script>
+      <?php
       Database::disconnect();
     //}
   }
@@ -205,6 +215,11 @@
     $sql = 'DELETE FROM banner WHERE id_banner = ?';
     $q = $pdo->prepare($sql);
     $q->execute(array($id_banner));
+    ?>
+        <script type="text/javascript">
+        window.location.href = 'http://localhost/gravicloth/dashboard.php?d=banner';
+        </script>
+      <?php
     Database::disconnect();
   }
 ?>
@@ -238,5 +253,9 @@
     $('#url_del').attr('value',url);
     $('.ui.modal.delete').modal('show');
   }
+  
+	$(document).ready(function(){
+    	$('#myTable').DataTable();
+	});
 
 </script>

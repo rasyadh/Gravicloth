@@ -38,12 +38,37 @@
                                 <i class="big blue add to cart icon"></i>
                             </div>
                         </a>
-                        <div class="item">
-                            <a href="?p=login" class="ui primary button masuk" id="square-button">Masuk</a>
-                        </div>
-                        <div class="item">
-                            <a href="?p=register" class="ui inverted blue button daftar" id="square-button">Daftar</a>
-                        </div>
+
+                        <?php 
+                            if ($login_session != ""){
+                        ?>
+                                <div class="item">
+                                <?php
+                                    if ($userInfoRow['profile_pict']){
+                                        echo '<a href="?p=profile"><img class="ui avatar image" src="'.$userInfoRow['profile_pict'].'"><span>'.$userInfoRow['name'].'</span></a>';
+                                    }
+                                    else {
+                                        echo '<a href="?p=profile"><img class="ui avatar image" src="public\images\profile\default.jpg"><span>'.$userInfoRow['name'].'</span></a>';
+                                    }
+                                ?>
+                                </div>
+
+                                <div class="item">
+                                    <a href="?p=logout" class="ui primary button masuk" id="square-button">Keluar</a>
+                                </div>
+                        <?php
+                            }
+                            else {
+                        ?>
+                                <div class="item">
+                                    <a href="?p=login" class="ui primary button masuk" id="square-button">Masuk</a>
+                                </div>
+                                <div class="item">
+                                    <a href="?p=register" class="ui inverted blue button daftar" id="square-button">Daftar</a>
+                                </div>
+                        <?php
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -82,12 +107,38 @@
                                 <i class="big blue add to cart icon"></i>
                             </div>
                         </a>
-                        <div class="item">
-                            <a href="?p=login" class="ui primary button masuk" id="square-button">Masuk</a>
-                        </div>
-                        <div class="item">
-                            <a href="?p=register" class="ui inverted blue button daftar" id="square-button">Daftar</a>
-                        </div>
+                        <?php 
+                            if ($login_session != ""){
+                        ?>
+                                <div class="item">
+                                <?php
+                                    if ($userInfoRow['profile_pict'] == NULL || $userInfoRow['profile_pict'] == ""){
+                                        echo '<a href="?p=profile"><img class="ui avatar image" src="public\images\profile\default.jpg">
+                                    <span>'.$userInfoRow['name'].'</span></a>';
+                                    }
+                                    else {
+                                        echo '<a href="?p=profile"><img class="ui avatar image" src="'.$userInfoRow['profile_pict'].'">
+                                    <span>'.$userInfoRow['name'].'</span></a>';
+                                    }
+                                ?>
+                                </div>
+
+                                <div class="item">
+                                    <a href="?p=logout" class="ui primary button masuk" id="square-button">Keluar</a>
+                                </div>
+                        <?php
+                            }
+                            else {
+                        ?>
+                                <div class="item">
+                                    <a href="?p=login" class="ui primary button masuk" id="square-button">Masuk</a>
+                                </div>
+                                <div class="item">
+                                    <a href="?p=register" class="ui inverted blue button daftar" id="square-button">Daftar</a>
+                                </div>
+                        <?php
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
