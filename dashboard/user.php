@@ -31,7 +31,7 @@
               echo '<td>'. $row['username'] . '</td>';
               echo '<td>'. $row['email'] . '</td>';
               echo '<td>'. $row['created_at'] . '</td>';
-              echo '<td>'.'<a class="ui yellow button" onclick="update(\''.$row['id_user'].'\', \''.$row['email'].'\', \''.$row['profile_pict'].'\', \''.$row['date_of_birth'].'\', \''.$row['gender'].'\', \''.$row['address'].'\', \''.$row['phone_number'].'\', \''.$row['id_province'].'\', \''.$row['id_city'].'\', \''.$row['postal_code'].'\')">View</a>';
+              echo '<td>'.'<a class="ui yellow button" onclick="update(\''.$row['id_user_detail'].'\', \''.$row['email'].'\', \''.$row['profile_pict'].'\', \''.$row['date_of_birth'].'\', \''.$row['gender'].'\', \''.$row['address'].'\', \''.$row['phone_number'].'\', \''.$row['id_province'].'\', \''.$row['id_city'].'\', \''.$row['postal_code'].'\')">View</a>';
               echo '<a class="ui red button" onclick="del(\''.$row['id_user'].'\', \''.$row['name'].'\')">Delete</a>';
               echo '</td></tr>';
             }
@@ -84,7 +84,7 @@
         </div>  
         <div class="field">
             <label>Alamat</label>
-            <textarea type="text" name="user-address"></textarea>
+            <textarea type="text" name="user-address"></textarea> 
         </div>
         <div class="field">
           <label>Provinsi</label>
@@ -179,7 +179,7 @@
       </div>
       <div class="field">
         <label>Alamat</label>
-        <input id="address_update" type="text" name="address_update" value="">
+        <textarea id="address_update" type="text" name="address_update"></textarea>
       </div>
       <div class="field">
         <label>Nomor Telefon</label>

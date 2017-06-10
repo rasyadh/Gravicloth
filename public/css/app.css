@@ -257,17 +257,23 @@ body {
 .ui.link.list a.item {
   color: black; }
 
-@media only screen and (max-width: 700px) {
-  .ui.fixed.menu {
-    display: none !important; }
-
-  .masthead.segment {
-    min-height: 350px; } }
 /* Login & Regis */
 #top-login-regis {
   margin: .5em 0 .5em 0; }
 
 #content-login-regis {
   max-width: 500px; }
+
+/* Profile */
+.profile-top-section {
+  margin-top: 2em;
+  margin-bottom: 2em; }
+
+@media only screen and (max-width: 700px) {
+  .ui.fixed.menu {
+    display: none !important; }
+
+  .masthead.segment {
+    min-height: 350px; } }
 
 /*# sourceMappingURL=app.css.map */
