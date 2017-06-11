@@ -18,6 +18,7 @@
 
     <script src="public/javascript/jquery.min.js"></script>
     <script src="public/javascript/semantic.min.js"></script>
+    
     <script type="text/javascript" src="lib/slick/slick.min.js"></script>
     <script src="public/javascript/banner-carousel.js"></script>
     <script src="public/javascript/following-header.js"></script>
@@ -29,13 +30,15 @@
             include 'config/dbconfig.php';
             include 'config/session.php';
 
-            $user_id = $_SESSION['user_session'];
-            $pdo = Database::connect();
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = 'SELECT * FROM user u, user_detail ud WHERE u.id_user=:id_user AND ud.id_user=:user_id';
-            $q = $pdo->prepare($sql);
-            $q->execute(array(':id_user'=>$user_id, ':user_id'=>$user_id));
-            $userInfoRow = $q->fetch(PDO::FETCH_ASSOC);
+            if (isset($_SESSION['user_session'])){
+                $user_id = $_SESSION['user_session'];
+                $pdo = Database::connect();
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $sql = 'SELECT * FROM user u, user_detail ud WHERE u.id_user=:id_user AND ud.id_user=:user_id';
+                $q = $pdo->prepare($sql);
+                $q->execute(array(':id_user'=>$user_id, ':user_id'=>$user_id));
+                $userInfoRow = $q->fetch(PDO::FETCH_ASSOC);
+            }
             
             include 'layout/partials/header.php'; 
         ?>

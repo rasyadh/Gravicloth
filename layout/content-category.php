@@ -46,19 +46,19 @@
 
                                 <?php 
                                     $pdo = Database::connect();
-                                    $sql = 'SELECT p.id_product, p.product_image, p.product_name, p.price FROM product p WHERE p.id_category = ? ORDER BY id_product ASC';
+                                    $sql = 'SELECT p.id_product, p.id_category, p.product_image, p.product_name, p.price FROM product p WHERE p.id_category = ? ORDER BY id_product ASC';
                                     $q = $pdo->prepare($sql);
                                     
                                     if ($q->execute(array($id_category))){
                                         foreach ($q as $row){
                                             echo '<div class="card">';
-                                            echo '<a class="image" href="?p=content-detail">
+                                            echo '<a class="image" href="?p=content-detail&id='.$row['id_product'].'&product='.$row['product_name'].'">
                                                 <img src="'.$row['product_image'].'">
                                             </a>';
                                             echo '<div class="content">
-                                                    <a class="header" href="?p=content-detail">'.$row['product_name'].'</a>
+                                                    <a class="header" href="?p=content-detail&id='.$row['id_product'].'&product='.$row['product_name'].'">'.$row['product_name'].'</a>
                                                     <div class="meta">
-                                                        <a href="?p=content-detail">'.'Rp '.$row['price'].'</a>
+                                                        <a href="?p=content-detail&id='.$row['id_product'].'&product='.$row['product_name'].'">'.'Rp '.$row['price'].'</a>
                                                     </div>
                                                 </div>';
                                             echo '</div>';

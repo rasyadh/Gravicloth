@@ -73,7 +73,7 @@ if(isset($_POST['register']))
             $q->execute(array(':id_user'=>$id_user));
             $success = "Registration Success";
             ?>
-                <div class="container">
+                <div class="ui container" style="margin-top: 1em;">
                     <div class="ui success message">
                         <p><?php echo $success; ?></p>
                     </div>
@@ -130,7 +130,7 @@ if(isset($_POST['register']))
                     <div class="ui basic label">
                         <i class="user blue icon"></i>
                     </div>
-                <input type="text" name="name" placeholder="Nama Lengkap">
+                <input type="text" name="name" required placeholder="Nama Lengkap">
                 </div>
             </div>
             <div class="field">
@@ -138,7 +138,7 @@ if(isset($_POST['register']))
                     <div class="ui basic label">
                         <i class="at blue icon"></i>
                     </div>
-                <input type="text" name="username" placeholder="Username">
+                <input type="text" name="username" required placeholder="Username">
                 </div>
             </div>
             <div class="field">
@@ -146,7 +146,7 @@ if(isset($_POST['register']))
                     <div class="ui basic label">
                         <i class="mail blue icon"></i>
                     </div>
-                <input type="email" name="email" placeholder="E-mail">
+                <input type="email" name="email" required placeholder="E-mail">
                 </div>
             </div>
             <div class="field">
@@ -154,7 +154,7 @@ if(isset($_POST['register']))
                     <div class="ui basic label">
                         <i class="lock blue icon"></i>
                     </div>
-                <input type="password" name="password" placeholder="Password">
+                <input type="password" name="password" required placeholder="Password">
                 </div>
             </div>
             <div class="field">

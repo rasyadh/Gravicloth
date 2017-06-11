@@ -25,7 +25,34 @@
 
 <body>
     <div class="ui bottom attached segment pushable">
-        <?php include 'dashboard/sidebar.php'; ?>
+        <?php 
+            include 'config/dbconfig.php';
+            // session_start();
+            
+            // include 'config/admin-session.php';
+
+            /*if(isset($_SESSION['admin_session']))
+            {
+                $user_id = $_SESSION['admin_session'];
+                $pdo = Database::connect();
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $sql = 'SELECT * FROM user u, user_detail ud WHERE u.id_user=:id_user AND ud.id_user=:user_id';
+                $q = $pdo->prepare($sql);
+                $q->execute(array(':id_user'=>$user_id, ':user_id'=>$user_id));
+                $adminInfoRow = $q->fetch(PDO::FETCH_ASSOC);                
+                echo '<div class="ui container">Coba</div>';
+            }
+            else {
+                ?>
+                    <script type="text/javascript">
+                    window.location.href = 'http://localhost/gravicloth/dashboard';
+                    </script>
+                <?php
+            }*/
+            
+
+            include 'dashboard/sidebar.php'; 
+        ?>
 
         <!-- Main view for templates -->
         <div class="pusher" id="main-content">

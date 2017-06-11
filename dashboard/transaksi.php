@@ -19,7 +19,6 @@
         </thead>
         <tbody>
           <?php
-            include 'config/dbconfig.php';
             $pdo = Database::connect();
             $sql = 'SELECT t.id_transaction, u.name, t.total_payment, t.transaction_date, t.status_payment FROM transaction t, user u WHERE t.id_user = u.id_user ORDER BY id_transaction ASC';
             foreach ($pdo->query($sql) as $row){

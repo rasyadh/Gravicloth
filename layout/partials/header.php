@@ -40,7 +40,7 @@
                         </a>
 
                         <?php 
-                            if ($login_session != ""){
+                            if (isset($_SESSION['user_session'])){
                         ?>
                                 <div class="item">
                                 <?php
@@ -108,7 +108,7 @@
                             </div>
                         </a>
                         <?php 
-                            if ($login_session != ""){
+                            if (isset($_SESSION['user_session'])){
                         ?>
                                 <div class="item">
                                 <?php

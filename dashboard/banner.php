@@ -20,7 +20,6 @@
         </thead>
         <tbody>
           <?php 
-            include 'config/dbconfig.php';
             $pdo = Database::connect();
             $sql = 'SELECT * FROM banner ORDER BY id_banner ASC';
             foreach ($pdo->query($sql) as $row){
@@ -46,15 +45,15 @@
     <form class="ui form" action="<?php $_PHP_SELF ?>" method="post" enctype="multipart/form-data">
         <div class="field">
             <label>Nama Banner</label>
-            <input type="text" name="banner-name" placeholder="Nama Banner">
+            <input type="text" name="banner-name" required placeholder="Nama Banner">
         </div>
         <div class="field">
             <label>Deskripsi Banner</label>
-            <textarea type="text" name="banner-description"></textarea>
+            <textarea type="text" required name="banner-description"></textarea>
         </div>
         <div class="field">
             <label>Upload Banner</label>
-            <input type="file" name="banner-img" accept="image/*">
+            <input type="file" required name="banner-img" accept="image/*">
         </div>
         <input class="ui primary button" name="add-banner" type="submit" value="Tambah Banner">
     </form>
@@ -71,11 +70,11 @@
       <input id="id" type="hidden" name="id" value="">
         <div class="field">
             <label>Nama Banner</label>
-            <input id="nama" type="text" name="name" placeholder="Nama Banner" value="">
+            <input id="nama" type="text" required name="name" placeholder="Nama Banner" value="">
         </div>
         <div class="field">
             <label>Deskripsi Banner</label>
-            <textarea id="deskripsi" type="text" name="description"></textarea>
+            <textarea id="deskripsi" type="text" required name="description"></textarea>
         </div>
         <!--<div class="field">
           <label>Tampilan Banner</label>

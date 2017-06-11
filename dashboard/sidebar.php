@@ -21,4 +21,7 @@
     <a class="item" href="?d=banner">
         <i class="image icon"></i>Banner
     </a>
+    <a class="item" href="?d=logout">
+        <i class="close icon"></i>Logout
+    </a>
 </div>

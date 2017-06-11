@@ -225,16 +225,26 @@ body {
   border: solid 1px #2185D0; }
 
 .ui.full-image {
-  max-width: 340px;
-  max-height: 340px; }
+  max-width: 400px;
+  max-height: 400px; }
 
 #image-product {
   padding-left: 0; }
 
 #height-custom {
-  height: 215px;
-  max-height: 215px;
+  height: 250px;
+  max-height: 250px;
   border-radius: 0; }
+
+.wrapper-design {
+  min-height: 17em;
+  max-height: 17em;
+  overflow-y: scroll;
+  overflow-x: hidden; }
+
+#select-design {
+  cursor: hand;
+  cursor: pointer; }
 
 /* Cart */
 .nav-cart {

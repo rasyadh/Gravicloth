@@ -10,6 +10,7 @@ if(isset($_POST['login'])) {
     $q = $pdo->prepare($sql);
     $q->execute(array(':email'=>$email));
     $userRow = $q->fetch(PDO::FETCH_ASSOC);
+
     if ($q->rowCount() > 0){
         if (password_verify($pass, $userRow['password'])){
             $_SESSION['user_session'] = $userRow['id_user'];
@@ -21,12 +22,20 @@ if(isset($_POST['login'])) {
             return true;
         }
         else {
-            return true;
+            echo '<div class="ui container" style="margin-top: 1em;">
+                <div class="ui error message">
+                    <p>Login Gagal</p>
+                </div>
+            </div>';
         }
     }
     else
     {
-        $error = "Wrong Details !";
+        echo '<div class="ui container" style="margin-top: 1em;">
+                <div class="ui error message">
+                    <p>Login Gagal</p>
+                </div>
+            </div>';
     } 
     Database::disconnect();
 }
@@ -43,23 +52,12 @@ if(isset($_POST['login'])) {
         </br>
 
         <form class="ui form" method="POST">
-            <?php
-                if(isset($error))
-                {
-                    ?>
-                    <div class="ui warning message">
-                        <div class="header">Could you check something!</div>
-                        <p><?php echo $error; ?></p>
-                    </div>
-                    <?php
-                }
-            ?>
             <div class="field">
                 <div class="ui labeled input">
                     <div class="ui basic label">
                         <i class="mail blue icon"></i>
                     </div>
-                <input type="text" name="email" placeholder="E-mail">
+                <input type="text" name="email" required placeholder="E-mail">
                 </div>
             </div>
             <div class="field">
@@ -67,7 +65,7 @@ if(isset($_POST['login'])) {
                     <div class="ui basic label">
                         <i class="lock blue icon"></i>
                     </div>
-                <input type="password" name="password" placeholder="Password">
+                <input type="password" name="password" required placeholder="Password">
                 </div>
             </div>
             <input class="ui fluid primary button" type="submit" name="login" value="Masuk">
@@ -85,7 +83,3 @@ if(isset($_POST['login'])) {
         <p>Belum punya akun? <a href="?p=register">Daftar Sekarang</a></p>
     </div>
 </div>
-
-<script>
-$('.ui.checkbox').checkbox();
-</script>

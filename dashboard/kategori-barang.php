@@ -16,7 +16,6 @@
         </thead>
         <tbody>
           <?php 
-            include 'config/dbconfig.php';
             $pdo = Database::connect();
             $sql = 'SELECT * FROM product_category ORDER BY id_category ASC';
             foreach ($pdo->query($sql) as $row){
@@ -38,7 +37,7 @@
   <form class="ui form" method="POST" action="<?php $_PHP_SELF ?>">
     <div class="field">
       <label>Nama Kategori</label>
-      <input type="text" name="category-name" placeholder="Nama Kategori">
+      <input type="text" name="category-name" required placeholder="Nama Kategori">
     </div>
     <input class="ui primary button" name="add-category" type="submit" value="Tambah Kategori">
   </form>
@@ -54,7 +53,7 @@
       <input type="hidden" id="id_update" name="id_update" value="">
       <div class="field">
         <label>Nama Kategori</label>
-        <input id="cat-name-update" type="text" name="cat-name-update" placeholder="Nama Kategori" value="">
+        <input id="cat-name-update" type="text" required name="cat-name-update" placeholder="Nama Kategori" value="">
       </div>
       <input class="ui primary button" name="update-category" type="submit" value="Update">
     </form>

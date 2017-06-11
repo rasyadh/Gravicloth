@@ -20,7 +20,6 @@
         </thead>
         <tbody>
           <?php
-            include 'config/dbconfig.php';
             $pdo = Database::connect();
             $sql = 'SELECT * FROM user u, role r, user_detail ud WHERE u.id_role = r.id_role AND u.id_user = ud.id_user ORDER BY u.id_user ASC';
             foreach ($pdo->query($sql) as $row){
@@ -46,11 +45,11 @@
     <form class="ui form" action="<?php $_PHP_SELF ?>" method="post" enctype="multipart/form-data">
         <div class="field">
             <label>Nama</label>
-            <input type="text" name="user-name" placeholder="Nama User">
+            <input type="text" name="user-name" required placeholder="Nama User">
         </div>
         <div class="field">
           <label>Role User</label>
-          <select class="ui search dropdown" name="user-role">
+          <select class="ui search dropdown" required name="user-role">
             <option value="">Pilih Role User</option>
             <?php
               $pdo = Database::connect();
@@ -64,19 +63,19 @@
         </div>  
         <div class="field">
             <label>Email</label>
-            <input type="email" name="user-email" placeholder="Email User">
+            <input type="email" name="user-email" required placeholder="Email User">
         </div>
         <div class="field">
             <label>Password</label>
-            <input type="password" name="user-pass" placeholder="Password User">
+            <input type="password" name="user-pass" required placeholder="Password User">
         </div>
         <div class="field">
             <label>Tanggal Lahir</label>
-            <input type="date" name="user-date" placeholder="Tanggal Lahir">
+            <input type="date" name="user-date" required placeholder="Tanggal Lahir">
         </div>
         <div class="field">
           <label>Jenis Kelamin</label>
-          <select class="ui search dropdown" name="user-gender">
+          <select class="ui search dropdown" required name="user-gender">
             <option value="">Pilih Jenis Kelamin</option>
             <option value="L">Laki - Laki</option>
             <option value="P">Perempuan</option>
@@ -84,11 +83,11 @@
         </div>  
         <div class="field">
             <label>Alamat</label>
-            <textarea type="text" name="user-address"></textarea> 
+            <textarea type="text" required name="user-address"></textarea> 
         </div>
         <div class="field">
           <label>Provinsi</label>
-          <select class="ui search dropdown" name="user-province" id="id_prov">
+          <select class="ui search dropdown" required name="user-province" id="id_prov">
             <option value="">Pilih Provinsi</option>
             <?php
         $province_selected;
@@ -103,7 +102,7 @@
         </div>  
         <div class="field">
           <label>Kota / Kabupaten</label>
-          <select class="ui search dropdown" name="user-city" id="kota">
+          <select class="ui search dropdown" required name="user-city" id="kota">
             <option value="">Pilih Kota / Kabupaten</option>
             <?php
               $pdo = Database::connect();
@@ -120,15 +119,15 @@
         </div>  
         <div class="field">
             <label>Kode Pos</label>
-            <input type="number" name="user-postal" placeholder="Kode Pos">
+            <input type="number" name="user-postal" required placeholder="Kode Pos">
         </div>
         <div class="field">
             <label>Nomor Telefon</label>
-            <input type="number" name="user-phone" placeholder="Nomor Telefon">
+            <input type="number" name="user-phone" required placeholder="Nomor Telefon">
         </div>
         <div class="field">
             <label>Upload Foto</label>
-            <input type="file" name="user-img" accept="image/*">
+            <input type="file" name="user-img" required accept="image/*">
         </div>
         <input class="ui primary button" name="add-user" type="submit" value="Tambah User">
     </form>

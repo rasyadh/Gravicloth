@@ -23,7 +23,6 @@
         </thead>
         <tbody>
           <?php
-            include 'config/dbconfig.php';
             $pdo = Database::connect();
             $sql = 'SELECT p.id_product, p.product_name, p.product_image, pc.category_name, p.product_description, c.color_name, p.stock, p.price, p.created_at FROM product p, product_category pc, color c WHERE p.id_category = pc.id_category and p.id_color = c.id_color ORDER BY id_product ASC';
             foreach ($pdo->query($sql) as $row){
@@ -52,11 +51,11 @@
     <form class="ui form" action="<?php $_PHP_SELF ?>" method="post" enctype="multipart/form-data">
         <div class="field">
             <label>Nama Barang</label>
-            <input type="text" name="product-name" placeholder="Nama Barang">
+            <input type="text" name="product-name" required placeholder="Nama Barang">
         </div>
         <div class="field">
           <label>Kategori Barang</label>
-          <select class="ui search dropdown" name="category-name">
+          <select class="ui search dropdown" required name="category-name">
             <option value="">Pilih Kategori Barang</option>
             <?php
               $pdo = Database::connect();
@@ -70,11 +69,11 @@
         </div>  
         <div class="field">
             <label>Deskripsi Barang</label>
-            <textarea type="text" name="product-description"></textarea>
+            <textarea type="text" required name="product-description"></textarea>
         </div>
         <div class="field">
           <label>Warna Barang</label>
-          <select class="ui search dropdown" name="color-name">
+          <select class="ui search dropdown" required name="color-name">
             <option value="">Pilih Warna Barang</option>
             <div class="item">
             <?php
@@ -89,18 +88,18 @@
         </div>  
         <div class="field">
             <label>Stok Barang</label>
-            <input type="number" name="product-stock" placeholder="Stok Barang">
+            <input type="number" name="product-stock" required placeholder="Stok Barang">
         </div>
         <div class="field">
             <label>Harga Barang</label>
             <div class="ui labeled input">
                 <div class="ui label">Rp</div>
-                <input type="number" name="product-price" placeholder="Harga Barang">
+                <input type="number" name="product-price" required placeholder="Harga Barang">
             </div>
         </div>
         <div class="field">
             <label>Upload Barang</label>
-            <input type="file" name="product-img" accept="image/*">
+            <input type="file" name="product-img" required accept="image/*">
         </div>
         <input class="ui primary button" name="add-product" type="submit" value="Tambah Barang">
     </form>
@@ -117,11 +116,11 @@
       <input id="id" type="hidden" name="id" value="">
         <div class="field">
             <label>Nama Barang</label>
-            <input id="nama" type="text" name="name" placeholder="Nama Barang" value="">
+            <input id="nama" type="text" name="name" required placeholder="Nama Barang" value="">
         </div>
         <div class="field">
           <label>Kategori Barang</label>
-          <select class="ui search dropdown" name="category">
+          <select class="ui search dropdown" required name="category">
             <option value="">Pilih Kategori Barang</option>
             <?php
               $pdo = Database::connect();
@@ -135,17 +134,17 @@
         </div>  
         <div class="field">
             <label>Deskripsi Barang</label>
-            <textarea id="deskripsi" type="text" name="description"></textarea>
+            <textarea id="deskripsi" type="text" required name="description"></textarea>
         </div>
         <div class="field">
             <label>Stok Barang</label>
-            <input id="stok" type="number" name="stock" placeholder="Stok Barang" value="">
+            <input id="stok" type="number" name="stock" required placeholder="Stok Barang" value="">
         </div>
         <div class="field">
             <label>Harga Barang</label>
             <div class="ui labeled input">
                 <div class="ui label">Rp</div>
-                <input id="harga" type="number" name="price" placeholder="Harga Barang" value="">
+                <input id="harga" type="number" name="price" required placeholder="Harga Barang" value="">
             </div>
         </div>
         <input class="ui primary button" name="update-product" type="submit" value="Update Barang">

@@ -111,13 +111,13 @@
                                         if ($q->execute(array($j))){
                                             foreach($q as $nrow) {
                                             echo '<div class="card">';
-                                            echo '<a class="image" href="?p=content-detail">
+                                            echo '<a class="image" href="?p=content-detail&id='.$nrow['id_product'].'&product='.$nrow['product_name'].'">
                                                 <img src="'.$nrow['product_image'].'">
                                             </a>';
                                             echo '<div class="content">
-                                                    <a class="header" href="?p=content-detail">'.$nrow['product_name'].'</a>
+                                                    <a class="header" href="?p=content-detail&id='.$nrow['id_product'].'&product='.$nrow['product_name'].'">'.$nrow['product_name'].'</a>
                                                     <div class="meta">
-                                                        <a href="?p=content-detail">'.'Rp '.$nrow['price'].'</a>
+                                                        <a href="?p=content-detail&id='.$nrow['id_product'].'&product='.$nrow['product_name'].'">'.'Rp '.$nrow['price'].'</a>
                                                     </div>
                                                 </div>';
                                             echo '</div>';
