@@ -118,6 +118,10 @@ $zero-value: 0;
     background-color: $color-blue-primary;
 }
 
+.ui.inverted.blue.active.button, .ui.inverted.blue.buttons .active.button {
+    background-color: $color-blue-primary;
+}
+
 .ui.table {
     border: $zero-value;
     border-radius: $zero-value;

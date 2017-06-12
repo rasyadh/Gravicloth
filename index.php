@@ -69,9 +69,11 @@
         }
         ?>
 
-        <?php include 'layout/partials/social.php'; ?>
+        <?php 
 
-        <?php include 'layout/partials/footer.php'; ?>
+            include 'layout/partials/social.php';
+
+            include 'layout/partials/footer.php'; ?>
     </div>
 </body>
 

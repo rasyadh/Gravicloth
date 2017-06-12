@@ -1,3 +1,7 @@
+<?php
+    if(isset($_SESSION['user_session'])){
+?>  
+
 <section class="profile-top-section">
     <div class="ui container">
         <div class="ui stackable grid">
@@ -202,3 +206,14 @@
 <script>
     $('.ui.search.dropdown').dropdown();
 </script>
+
+<?php
+    }
+    else {
+        ?>
+            <script type="text/javascript">
+            window.location.href = 'http://localhost/gravicloth/?p=403';
+            </script>
+        <?php
+    }
+?>

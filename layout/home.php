@@ -137,3 +137,5 @@
 
             </div>
         </section>
+
+<?php include 'layout/partials/maps.php'; ?>

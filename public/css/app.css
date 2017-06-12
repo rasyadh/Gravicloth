@@ -83,6 +83,9 @@
 .ui.inverted.blue.button:focus, .ui.inverted.blue.buttons .button:focus {
   background-color: #2185D0; }
 
+.ui.inverted.blue.active.button, .ui.inverted.blue.buttons .active.button {
+  background-color: #2185D0; }
+
 .ui.table {
   border: 0;
   border-radius: 0; }
