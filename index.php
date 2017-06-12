@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
+    <meta name="google-signin-client_id" content="599829634564-pv75ra59tp1e6es3ruibr9mdmn0kn7ro.apps.googleusercontent.com">
+
     <!-- Site Properties -->
     <title>Gravicloth - Custom Clothing IT Brand</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -22,9 +24,12 @@
     <script type="text/javascript" src="lib/slick/slick.min.js"></script>
     <script src="public/javascript/banner-carousel.js"></script>
     <script src="public/javascript/following-header.js"></script>
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
 <body>
+
     <div class="pusher">
         <?php 
             include 'config/dbconfig.php';
@@ -75,6 +80,16 @@
 
             include 'layout/partials/footer.php'; ?>
     </div>
+
+<script>
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        }
+</script>
 </body>
 
 </html>

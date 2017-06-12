@@ -52,7 +52,9 @@
         <!-- Icon Kategori -->
         <section class="ico-category-section">
             <div class="ui very padded container">
-                <div class="ui stackable equal width grid">
+
+                <!-- Mobile Icon -->
+                <div class="ui centered four column grid" id="icon-mobile">
                     <?php 
                         $pdo = Database::connect();
                         $sql = 'SELECT p.id_product, p.product_image, p.product_name, p.price FROM product p WHERE p.id_category = ? ORDER BY id_product ASC LIMIT 5';
@@ -62,10 +64,10 @@
                         foreach ($list_cat as $row){
                     ?>
 
-                    <div class="column">
-                        <div class="ui very padded segment square">
+                    <div class="column" style="width: 24%;">
+                        <div class="ui  segment square">
                         <?php 
-                            echo '<a class="ui tiny image" href="?p='.strtolower($row).'">';
+                            echo '<a class="ui centered tiny image" href="?p='.strtolower($row).'">';
                             echo '<img src="public/images/'.$list_ico_kategory[$i].'">';
                             echo '</a>';
                             $i++;
@@ -78,8 +80,37 @@
                     ?>
 
                 </div>
+
+                <div class="ui centered equal width grid">
+                    <?php 
+                        $pdo = Database::connect();
+                        $sql = 'SELECT p.id_product, p.product_image, p.product_name, p.price FROM product p WHERE p.id_category = ? ORDER BY id_product ASC LIMIT 5';
+                        $q = $pdo->prepare($sql);
+                        $list_ico_kategory = ['ico_kaos.svg', 'ico_kemeja.svg', 'ico_polo.svg', 'ico_hoodie.svg', 'ico_sweater.svg', 'ico_tas.svg', 'ico_celana.svg'];
+                        $i = 0;
+                        foreach ($list_cat as $row){
+                    ?>
+
+                    <div class="column">
+                        <div class="ui very padded segment square">
+                        <?php 
+                            echo '<a class="ui centered tiny image" href="?p='.strtolower($row).'">';
+                            echo '<img src="public/images/'.$list_ico_kategory[$i].'">';
+                            echo '</a>';
+                            $i++;
+                        ?>
+                        </div>
+                    </div>
+
+                    <?php 
+                        }
+                    ?>
+
+                </div>
+
             </div>
         </section>
+        </br>
 
         <!-- Show Barang per Kategori -->
         <section class="showroom-section">

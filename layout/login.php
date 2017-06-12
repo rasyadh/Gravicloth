@@ -70,14 +70,13 @@ if(isset($_POST['login'])) {
             </div>
             <input class="ui fluid primary button" type="submit" name="login" value="Masuk">
             </br>
-            <a>Lupa Password?</a>
+            <p>Atau</p>
         </form>
 
         </br>
-        <div class="ui horizontal divider">Atau</div>
-        </br>
-        <button class="ui facebook button"><i class="facebook icon"></i>Masuk dengan Facebook</button>
-        <button class="ui google plus button"><i class="google icon"></i>Masuk dengan Google</button>
+        <div class="ui horizontal divider">
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </div>
         </br>
         </br>
         <p>Belum punya akun? <a href="?p=register">Daftar Sekarang</a></p>

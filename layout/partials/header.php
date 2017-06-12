@@ -1,7 +1,32 @@
 <header class="header">
+            <!-- Sidebar Menu -->
+            <div class="ui top vertical borderless sidebar menu">
+                <div class="item">
+                    <a href="?=home">
+                        <img class="ui centered tiny image" src="public/images/logo.png">
+                    </a>
+                </div>
+                <a href="?p=cart" class="item">Cart</a>
+                <a href="?p=login" class="item">Masuk</a>
+                <a href="?p=register" class="item">Daftar</a>
+                <a href="?p=kaos" class="item">Kaos</a>
+                <a href="?p=kemeja" class="item">Kemeja</a>
+                <a href="?p=polo" class="item">Polo</a>
+                <a href="?p=jaket" class="item">Jaket</a>
+                <a href="?p=sweatshirt" class="item">Sweatshirt</a>
+                <a href="?p=tas" class="item">Tas</a>
+                <a href="?p=celana" class="item">Celana</a>
+            </div>
+
             <!-- Header Menu -->
-            <div class="ui borderless menu square" id="nav-header">
+            <div class="ui borderless menu square masthead" id="nav-header">
                 <div class="ui container">
+                    <a class="toc item">
+                        <i class="sidebar icon"></i>
+                    </a>
+                    <a class="item" id="logo-side" style="width:80%;">
+                        <img class="ui centered small image" src="public/images/logo.png">
+                    </a>
                     <div class="item">
                         <a href="?=home">
                             <img class="ui small image" src="public/images/logo.png">
@@ -56,6 +81,16 @@
                                 <div class="item">
                                     <a href="?p=logout" class="ui primary button masuk" id="square-button">Keluar</a>
                                 </div>
+
+                                <a href="#" onclick="signOut();">Sign out</a>
+                                <script>
+                                    function signOut() {
+                                        var auth2 = gapi.auth2.getAuthInstance();
+                                        auth2.signOut().then(function () {
+                                        console.log('User signed out.');
+                                        });
+                                    }
+                                </script>
                         <?php
                             }
                             else {

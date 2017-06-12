@@ -14,16 +14,59 @@
 	$userPerMonth = array(12);
 	$q = $pdo->prepare($sql);
     $q->execute();
-    $rows = $q->fetchAll();    
+    $rows = $q->fetchAll();   
+	Database::disconnect(); 
 
 	for ($i = 1; $i <= 12; $i++){
-		for ($j = 0; $j < 3; $j++){
+		for ($j = 0; $j < COUNT($rows); $j++){
 			if ($rows[$j][1] == $i){
-				$userPerMonth[$i] = $rows[$j][2];
+				$userPerMonth[($i-1)] = $rows[$j][2];
 				break;
 			}
 			else {
-				$userPerMonth[$i] = 0;
+				$userPerMonth[($i-1)] = 0;
+			}
+		}
+	}
+
+	$pdo = Database::connect();
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$sql = 'SELECT product.id_category, COUNT(id_product) FROM product GROUP BY id_category';
+	$prodPerCat = array(7);
+	$q = $pdo->prepare($sql);
+    $q->execute();
+    $rowsP = $q->fetchAll();   
+	Database::disconnect(); 
+
+	for ($i = 1; $i <= 7; $i++){
+		for ($j = 0; $j < COUNT($rowsP); $j++){
+			if ($rowsP[$j][0] == $i){
+				$prodPerCat[($i-1)] = $rowsP[$j][1];
+				break;
+			}
+			else {
+				$prodPerCat[($i-1)] = 0;
+			}
+		}
+	}
+
+	$pdo = Database::connect();
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$sql = 'SELECT MONTH(transaction_date), COUNT(id_transaction) FROM `transaction` WHERE transaction_date >= CURRENT_DATE() - INTERVAL 1 YEAR GROUP BY MONTH(transaction_date)';
+	$transPerMonth = array(12);
+	$q = $pdo->prepare($sql);
+    $q->execute();
+    $rowsT = $q->fetchAll();   
+	Database::disconnect(); 
+
+	for ($i = 1; $i <= 12; $i++){
+		for ($j = 0; $j < COUNT($rowsT); $j++){
+			if ($rowsT[$j][0] == $i){
+				$transPerMonth[($i-1)] = $rowsT[$j][1];
+				break;
+			}
+			else {
+				$transPerMonth[($i-1)] = 0;
 			}
 		}
 	}
@@ -54,6 +97,9 @@
 </div>
 
 <script>
+	var userPerMonth = <?php echo json_encode($userPerMonth); ?>;
+	var prodPerCat = <?php echo json_encode($prodPerCat); ?>;
+	var transPerMonth = <?php echo json_encode($transPerMonth) ?>;
 
 	$(document).ready(function(){
 
@@ -81,7 +127,7 @@
 						pointHoverBorderWidth: 2,
 						pointRadius: 1,
 						pointHitRadius: 10,
-						data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+						data: transPerMonth,
 						spanGaps: false,
 					}
 				]
@@ -118,7 +164,7 @@
 						pointHoverBorderWidth: 2,
 						pointRadius: 1,
 						pointHitRadius: 10,
-						data: [0, 0, 0, 1, 2, 2, 0, 0, 0, 0, 0, 0],
+						data: userPerMonth,
 						spanGaps: false,
 					}
 				]
@@ -135,7 +181,7 @@
 		var barang_chart = new Chart(barangPerKategori, {
 			type: 'bar',
 			data: {
-				labels: [ "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" ],
+				labels: [ "Kaos", "Kemeja", "Polo", "Jaket", "Sweatshirt", "Tas", "Celana" ],
 				datasets: [
 					{
 						label: "Bulan",
@@ -156,7 +202,7 @@
 							'rgba(153, 10, 55, 1)', 'rgba(55, 59, 64, 1)'
 						],
 						borderWidth: 1,
-						data: [0, 0, 0, 0, 0, 72, 0, 0, 0, 0, 0, 0],
+						data: prodPerCat,
 					}
 				]
 			},

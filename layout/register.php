@@ -163,10 +163,7 @@ if(isset($_POST['register']))
             <input class="ui fluid primary button" type="submit" name="register" value="Daftar">
         </form>
         </br>
-        <div class="ui horizontal divider">Atau</div>
-        </br>
-        <button class="ui facebook button"><i class="facebook icon"></i>Daftar dengan Facebook</button>
-        <button class="ui google plus button"><i class="google icon"></i>Daftar dengan Google</button>
+        <div class="ui horizontal divider"><div class="g-signin2" data-onsuccess="onSignIn"></div></div>
         </br>
         </br>
         <p>Sudah punya akun? <a href="?p=login">Silakan Login</a></p>

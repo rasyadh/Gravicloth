@@ -130,11 +130,11 @@ $zero-value: 0;
 .ui.table {
     thead th {
         background: none;
-        border-bottom: $zero-value;
+        border-bottom: 1 $color-light-grey;
     }
     tfoot th {
         background: none;
-        border-top: $zero-value;
+        border-top: 1 $color-light-grey;
     }
     tr td {
         border-top: $zero-value;
@@ -167,6 +167,10 @@ body {
     background-color: $body-color;
 }
 
+body.pushable>.pusher {
+    background: $body-color;
+}
+
 #login-regis {
     background: $color-white;
     background-color: $color-white;
@@ -180,6 +184,14 @@ body {
 
 #kategori-header {
     color: $color-blue-primary;
+}
+
+.borderless.menu.masthead .toc.item {
+    display: none;
+}
+
+.borderless.menu.masthead #logo-side {
+    display: none;
 }
 
 /* Kategori */
@@ -213,6 +225,10 @@ body {
 /* Icon Kategori */
 .custom-section {
     margin-top: 3em;
+}
+
+#icon-mobile {
+    display: none;
 }
 
 /* Slick */
@@ -374,10 +390,31 @@ body {
 }
 
 @media only screen and (max-width: 700px) {
+    body {
+        background: $body-color;
+        background-color: $body-color;
+    }
     .ui.fixed.menu {
-    display: none !important;
-    }
-    .masthead.segment {
-    min-height: 350px;
-    }
+        display: none !important;
+      }
+      .borderless.menu.masthead .item,
+      .borderless.menu.masthead .right.item,
+      .borderless.menu.masthead .menu {
+        display: none;
+      }
+      .borderless.menu.masthead .toc.item {
+        display: block;
+      }
+      .borderless.menu.masthead #logo-side {
+        display: block;
+      }
+      #nav-header {
+        min-height: 60px;
+      }
+      .ui.equal.width.grid {
+          display: none;
+      }
+      #icon-mobile {
+          display: block;
+      }
 }

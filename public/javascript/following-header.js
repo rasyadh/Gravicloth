@@ -10,4 +10,10 @@ $(document).ready(function() {
         $('.fixed.menu').transition('fade out');
         }
     });
+
+    // create sidebar and attach to menu open
+    $('.ui.top.sidebar').sidebar({
+        transition: 'push'
+    });
+    $('.ui.top.sidebar').sidebar('attach events', '.toc.item');
 });

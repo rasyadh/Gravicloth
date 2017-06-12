@@ -101,12 +101,12 @@
                         </div>
 
                         <form method="POST" action="<?php $_PHP_SELF ?>">
-                            <input type="hidden" id="id-user" name="id-user" value="<?= $user_id ?>">
-                            <input type="hidden" id="id-product" name="id-product" value="<?= $id_prod ?>">
-                            <input type="hidden" id="product-name" name="product-name" value="<?= $row['product_name'] ?>">
-                            <input type="hidden" id="price" name="price" value="<?= $row['price'] ?>">
-                            <input type="hidden" id="id-design" name="id-design" value="0">
-                            <input type="hidden" id="id-size" name="id-size">
+                            <input type="hidden" id="id-user" required name="id-user" value="<?= $user_id ?>">
+                            <input type="hidden" id="id-product" required name="id-product" value="<?= $id_prod ?>">
+                            <input type="hidden" id="product-name" required name="product-name" value="<?= $row['product_name'] ?>">
+                            <input type="hidden" id="price" required name="price" value="<?= $row['price'] ?>">
+                            <input type="hidden" id="id-design" required name="id-design" value="0">
+                            <input type="hidden" id="id-size" required name="id-size">
                             <div class="field">
                                 <input class="ui fluid primary button" type="submit" name="add-to-cart" value="SELESAI CUSTOM">
                             </div>
