@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2017 at 07:08 PM
+-- Generation Time: Jun 12, 2017 at 09:01 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -43,6 +43,22 @@ INSERT INTO `banner` (`id_banner`, `banner_name`, `banner_description`, `banner_
 (2, 'Custom All', 'Kelebihan Gravicloth yaitu custom desain, warna, dan ukuran.', 'public/images/banner/Custom All.jpg', 0),
 (3, 'Free Ongkir', 'Pengiriman gratis dan cepat ke seluruh Indonesia.', 'public/images/banner/Free Ongkir.jpg', 0),
 (4, 'Diskon Modulus', 'Diskon 20% dengan kode voucher MODULUS', 'public/images/banner/Diskon Modulus.jpg', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id_user` int(11) NOT NULL,
+  `id_product` int(11) NOT NULL,
+  `product_name` varchar(50) NOT NULL,
+  `price` int(11) NOT NULL,
+  `id_design` int(11) NOT NULL,
+  `id_size` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -666,7 +682,8 @@ INSERT INTO `design` (`id_design`, `design_code`, `design_name`, `image_url`) VA
 (57, 4, 'd4-react', 'public/images/design/d4-react.png'),
 (58, 4, 'd4-ruby', 'public/images/design/d4-ruby.png'),
 (59, 4, 'd4-vs', 'public/images/design/d4-vs.png'),
-(60, 4, 'd4-vue', 'public/images/design/d4-vue.png');
+(60, 4, 'd4-vue', 'public/images/design/d4-vue.png'),
+(61, 0, 'blank', 'public/images/design/blank.png');
 
 -- --------------------------------------------------------
 
@@ -929,9 +946,22 @@ CREATE TABLE `transaction` (
   `id_transaction` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `total_payment` int(11) NOT NULL,
-  `transaction_date` date NOT NULL,
-  `status_payment` tinyint(1) NOT NULL
+  `transaction_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`id_transaction`, `id_user`, `total_payment`, `transaction_date`) VALUES
+(1, 2, 280000, '2017-05-12 14:59:30'),
+(2, 3, 120000, '2017-05-12 15:00:36'),
+(3, 5, 90000, '2017-06-12 15:03:57'),
+(4, 5, 200000, '2017-06-12 15:06:15'),
+(5, 6, 120000, '2017-06-12 15:07:11'),
+(6, 6, 80000, '2017-06-12 15:07:54'),
+(7, 4, 85000, '2017-06-12 15:13:50'),
+(8, 4, 90000, '2017-06-12 15:14:22');
 
 -- --------------------------------------------------------
 
@@ -943,10 +973,25 @@ CREATE TABLE `transaction_detail` (
   `id_transaction` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
   `id_design` int(11) NOT NULL,
-  `id_color` int(11) NOT NULL,
   `id_size` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaction_detail`
+--
+
+INSERT INTO `transaction_detail` (`id_transaction`, `id_product`, `id_design`, `id_size`, `quantity`) VALUES
+(1, 2, 1, 3, 1),
+(1, 6, 13, 3, 1),
+(1, 33, 19, 3, 1),
+(2, 57, 15, 4, 1),
+(3, 14, 6, 3, 1),
+(3, 70, 41, 3, 1),
+(5, 34, 25, 4, 1),
+(5, 4, 5, 4, 1),
+(7, 19, 12, 3, 1),
+(8, 30, 27, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -973,7 +1018,9 @@ INSERT INTO `user` (`id_user`, `id_role`, `name`, `username`, `email`, `password
 (2, 2, 'Rasyadh Abdul Aziz', 'Rasyadh', 'rasyadhabdulaziz@gmail.com', '$2y$10$3hpAPfUYYLcRnGTQMIA3oeaRvFVYSbd1l/zoSh1XH3KTir6TQZ3hG', '2017-05-10 15:04:00'),
 (3, 2, 'Customer', 'Customer', 'customercloth@gravicodev.id', '$2y$10$R//ieNimwecZE4mlNiKQ2.P42/hphXH7TXcYrX0eizLKXlTxI1NC2', '2017-05-10 12:42:17'),
 (4, 2, 'Gravity', 'Gravity', 'gravity@gravicodev.id', '$2y$10$CAAcHqZU35L3To6DXfPmBuLRbtfunMgg.bj7IcRa6gFGJqQdQ6twq', '2017-06-10 12:50:54'),
-(5, 2, 'M. Fatih A. S.', 'mfatihas', 'mfatihas97@gmail.com', '$2y$10$jkkSYICeBDFngOFipoYRO.tP/RC/DL0SvBo1cisqwmTVPC6oJcfxO', '2017-06-11 15:44:09');
+(5, 2, 'M. Fatih A. S.', 'mfatihas', 'mfatihas97@gmail.com', '$2y$10$jkkSYICeBDFngOFipoYRO.tP/RC/DL0SvBo1cisqwmTVPC6oJcfxO', '2017-06-11 15:44:09'),
+(6, 2, 'Julio Alfian Dwi Cahya', 'Julio', 'julioixc@gmail.com', '$2y$10$Ywxq0bEWNIEXfnac98YwGulhJpWzZzN.2cCy70SGsLN5dygfOlCUe', '2017-06-12 04:25:56'),
+(7, 2, 'Ardika Bagus S', 'ardikabs', 'ardikabs@gmail.com', '$2y$10$uXm/tGCOAkGS6hL9a2/WAu7zYjJZGwB8O9K1HXP.18bvrPJi8idRq', '2017-06-12 15:51:44');
 
 -- --------------------------------------------------------
 
@@ -1003,7 +1050,9 @@ INSERT INTO `user_detail` (`id_user_detail`, `id_user`, `profile_pict`, `date_of
 (2, 2, 'public/images/profile/Rasyadh Abdul Aziz.jpg', '1996-08-18', 'L', 'Dupak 5 No. 42', '083856535951', 11, 158, 60171),
 (3, 3, 'public/images/profile/Admin.jpg', '1945-08-17', 'L', 'Customer Page', '083856535952', 6, 42, 60202),
 (4, 4, 'public/images/profile/Gravity.jpg', '2014-01-09', 'L', 'D4 Teknik Informatika A Politeknik Elektronika Negeri Surabaya', '081852853854', 11, 158, 60111),
-(5, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(5, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -1091,9 +1140,8 @@ ALTER TABLE `transaction`
 -- Indexes for table `transaction_detail`
 --
 ALTER TABLE `transaction_detail`
-  ADD KEY `id_transaction` (`id_transaction`,`id_product`,`id_design`,`id_color`,`id_size`),
+  ADD KEY `id_transaction` (`id_transaction`,`id_product`,`id_design`,`id_size`),
   ADD KEY `id_size` (`id_size`),
-  ADD KEY `id_color` (`id_color`),
   ADD KEY `id_design` (`id_design`),
   ADD KEY `id_product` (`id_product`);
 
@@ -1136,7 +1184,7 @@ ALTER TABLE `color`
 -- AUTO_INCREMENT for table `design`
 --
 ALTER TABLE `design`
-  MODIFY `id_design` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id_design` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 --
 -- AUTO_INCREMENT for table `product`
 --
@@ -1171,17 +1219,17 @@ ALTER TABLE `size`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id_transaction` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_transaction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `user_detail`
 --
 ALTER TABLE `user_detail`
-  MODIFY `id_user_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Constraints for dumped tables
 --
@@ -1224,7 +1272,6 @@ ALTER TABLE `transaction`
 ALTER TABLE `transaction_detail`
   ADD CONSTRAINT `transaction_detail_ibfk_1` FOREIGN KEY (`id_transaction`) REFERENCES `transaction` (`id_transaction`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `transaction_detail_ibfk_2` FOREIGN KEY (`id_size`) REFERENCES `size` (`id_size`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaction_detail_ibfk_3` FOREIGN KEY (`id_color`) REFERENCES `color` (`id_color`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `transaction_detail_ibfk_4` FOREIGN KEY (`id_design`) REFERENCES `design` (`id_design`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `transaction_detail_ibfk_5` FOREIGN KEY (`id_product`) REFERENCES `product` (`id_product`) ON DELETE CASCADE ON UPDATE CASCADE;
 
